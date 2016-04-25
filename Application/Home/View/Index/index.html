@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -15,7 +15,9 @@
  <script src="__PUB__/mtgadmin/mtg.js"></script>
 <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
    <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
-        <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
+       <!--  <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
 <link rel="stylesheet" href="__PUB__/time/css/material.min.css" />
   <link rel="stylesheet" href="__PUB__/time/css/bootstrap-material-datetimepicker.css" />
@@ -54,9 +56,16 @@
             <div class="row" style="margin-top: 40px">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-                    <textarea rows="5" cols="60">
-
-        </textarea> 
+              任务内容：
+                    <textarea rows="5" cols="60"></textarea> 
+              </div>
+            </div>
+          </div>
+             <div class="row" style="margin-top: 40px">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+     <button type="button" class="btn btn-warning sss" id="cancel_task">取消</button>
+     <button type="button" class="btn btn-success sss" id="pub_task()">发布</button>
               </div>
             </div>
           </div>
@@ -105,8 +114,9 @@
 <script>
 	$(document).ready( function () {
     $('#table_id').DataTable();
-      $(".floating-label").css('color','red');
-      $(".form-control-wrapper").css('color','red');
+   
+
+
 });
 
 
@@ -138,11 +148,11 @@
 
       $('#date-end').bootstrapMaterialDatePicker
       ({
-        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+        weekStart: 0, format: 'YYYY/MM/DD HH:mm'
       });
       $('#date-start').bootstrapMaterialDatePicker
       ({
-        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+        weekStart: 0, format: 'YYYY/MM/DD HH:mm'
       }).on('change', function(e, date)
       {
         $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
@@ -151,8 +161,17 @@
       $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
 
       $.material.init();
-    
+     $('.dtp-btn-cancel').text('取消');
+     $(".dtp-btn-ok").text('确认');
+     $(".floating-label").css('color','red');
     });
+
+/*
+ *此处的作用是：
+ *var temp =$('date-start').bootstrapMaterialDatePicker();
+    console.log(temp.context.lastModified)
+ *
+ */
     </script>
 
        

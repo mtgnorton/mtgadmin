@@ -26,7 +26,7 @@ public function index($value='')
 
 		$member_data 	= get_users(session('group_id'));
 		$this->assign('member_data' , $member_data);
-
+		
 
 		$this 	-> display();
 	}	

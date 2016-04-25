@@ -148,5 +148,12 @@
     function assign_task(user_id) {
         $(".task_m").show();
          $(".task_b").show();
+        $("#cancel_task").unbind('click').bind('click',function(){ 
+           $(".task_m").hide();
+         $(".task_b").hide();
+        })
+
+    }
+    function cancel_task(){
 
     }

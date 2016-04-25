@@ -40,7 +40,7 @@
         background:#fff;
         background-color:green;
         position:fixed;
-
+        max-width: 800px;
         min-height: 400px;
         top:25%;
         left:20%;
