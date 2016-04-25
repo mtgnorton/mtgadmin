@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="__PUB__/DataTables/css/jquery.dataTables.css">
+    <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+ <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
+ 
+ <!-- DataTables -->
+ <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
+ <!-- <script src="__JQUERY__/jquery-2.1.1.min.js"></script> -->
+ <script src="__BOOT__/js/bootstrap.min.js"></script>
+ <script src="__PUB__/mtgadmin/mtg.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
+   <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+        <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
+        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
+<link rel="stylesheet" href="__PUB__/time/css/material.min.css" />
+  <link rel="stylesheet" href="__PUB__/time/css/bootstrap-material-datetimepicker.css" />
+  <script type="text/javascript" src="__PUB__/time/js/material.min.js"></script>
+  <script type="text/javascript" src="__PUB__/time/js/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="__PUB__/time/js/bootstrap-material-datetimepicker.js"></script>
+
+</head>
+<body>
+   <include  file="Public/sbider"  />
+  
+<input type="hidden" id="modify_group" value="{:U('Admin/Index/modify_group')}">
+
+<div class="task_b"></div>
+
+  <div class="htmleaf-container">
+    
+    <div class="container well task_m" style=" background-color:orange;">
+    
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+                <input type="text" id="date-start" class="form-control floating-label" placeholder="开始时间">
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 40px">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+                <input type="text" id="date-end" class="form-control floating-label" placeholder="结束时间">
+              </div>
+            </div>
+          </div>
+            <div class="row" style="margin-top: 40px">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+                    <textarea rows="5" cols="60">
+
+        </textarea> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+ <div class="table_div" >
+   <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th >序号</th>
+            <th>姓名</th>
+            <th>用户等级</th>
+            <th>最后一次登陆时间</th>
+            <th>任务数量</th>
+ 			       <th>布置任务</th>
+             <th>查看任务列表</th>
+        </tr>
+    </thead>
+    <tbody>
+
+   <volist name="member_data" id="value" key="key" >
+        <tr>
+            <td>{$key}</td>
+            <td >{$value.realname}</td>
+            <td id="{$value.id}_group">{$value.group_name}</td>
+            <td>{$value.last_login_time}</td>
+            <td>1</td>
+            <td>  <button type="button" onclick="assign_task({$key})" class="btn btn-default btn-sm">
+      布置
+   </button></td>
+           <td>  <button type="button" onclick="" class="btn btn-default btn-sm">
+      查看
+   </button></td>
+        </tr>
+    </volist>
+    </tbody>
+</table>
+</div>
+</body>
+
+<script>
+	$(document).ready( function () {
+    $('#table_id').DataTable();
+      $(".floating-label").css('color','red');
+      $(".form-control-wrapper").css('color','red');
+});
+
+
+    $(document).ready(function()
+    {
+      $('#date').bootstrapMaterialDatePicker
+      ({
+        time: false
+      });
+
+      $('#time').bootstrapMaterialDatePicker
+      ({
+        date: false,
+        shortTime: true,
+        format: 'HH:mm'
+      });
+
+      $('#date-format').bootstrapMaterialDatePicker
+      ({
+        format: 'dddd DD MMMM YYYY - HH:mm'
+      });
+      $('#date-fr').bootstrapMaterialDatePicker
+      ({
+        format: 'DD/MM/YYYY HH:mm',
+        lang: 'fr',
+        weekStart: 1, 
+        cancelText : 'ANNULER'
+      });
+
+      $('#date-end').bootstrapMaterialDatePicker
+      ({
+        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+      });
+      $('#date-start').bootstrapMaterialDatePicker
+      ({
+        weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+      }).on('change', function(e, date)
+      {
+        $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+      });
+
+      $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+      $.material.init();
+    
+    });
+    </script>
+
+       
+</html>

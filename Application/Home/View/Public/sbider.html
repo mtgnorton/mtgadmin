@@ -1,0 +1,48 @@
+
+ <link rel="stylesheet" type="text/css" href="__PUB__/sbider/sbider.css" />
+
+
+<div class="sbider">
+<div id="n1">
+<div class="leftsidebar_box" id="n2"  >
+   
+        <div class="line"></div>
+        <dl class="system_log">
+            <dt onClick="">系统记录<img src="__PUB__/sbider/images/left/select_xl01.png"></dt>
+            <dd class="first_dd"><a href="#">充值记录</a></dd>
+            <dd><a href="#">短信充值记录</a></dd>
+            <dd><a href="#">消费记录</a></dd>
+            <dd><a href="#">操作记录</a></dd>
+        </dl>
+        <dl class="system_log">
+            <dt onClick="logout()">退出登陆<img src="__PUB__/sbider/images/left/select_xl01.png"></dt>
+        
+        </dl>
+
+
+    
+    </div>
+
+</div>
+    </div>
+<input type="hidden" id="logout" value="{:U('Admin/Login/logout')}">
+<!-- <script type="text/javascript" src="__PUB__/sbider/js/jquery.js"></script> -->
+<script type="text/javascript">
+$(".leftsidebar_box dt").css({"background-color":"#3992d0"});
+$(".leftsidebar_box dt img").attr("src","__PUB__/sbider/images/left/select_xl01.png");
+$(function(){
+    $(".leftsidebar_box dd").hide();
+    $(".leftsidebar_box dt").click(function(){
+        $(".leftsidebar_box dt").css({"background-color":"#3992d0"})
+        $(this).css({"background-color": "#317eb4"});
+        $(this).parent().find('dd').removeClass("menu_chioce");
+        $(".leftsidebar_box dt img").attr("src","__PUB__/sbider/images/left/select_xl01.png");
+        $(this).parent().find('img').attr("src","__PUB__/sbider/images/left/select_xl.png");
+        $(".menu_chioce").slideUp(); 
+        $(this).parent().find('dd').slideToggle();
+        $(this).parent().find('dd').addClass("menu_chioce");
+    });
+})
+</script>
+
+

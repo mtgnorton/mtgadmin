@@ -1,0 +1,77 @@
+        .mask{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .bomb_box  {
+        display:none;
+        background:#fff;
+        position:fixed;
+        width: 500px;
+        height: 200px;
+        top:25%;
+        left:35%;
+        z-index:20;
+        background:url( "../photo/b1.png");
+      
+        }
+        .task_b{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .task_m{
+        display:none;
+        background:#fff;
+        background-color:green;
+        position:fixed;
+
+        min-height: 400px;
+        top:25%;
+        left:20%;
+        z-index:20;
+
+       font-size: 20px;
+       
+        }
+
+        #thename{
+        font-size: 20px;
+        float: left;
+        margin-top:20%;
+        }
+        #group{
+            float: left;
+        margin-top:20%;
+
+        }
+         .group{
+        float: right;
+       
+        margin-top:20%;
+
+        }
+        td th{
+    text-align: center;
+    }
+    .table_div{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:100px
+    }
