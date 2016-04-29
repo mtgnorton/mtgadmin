@@ -10,113 +10,208 @@
  
  <!-- DataTables -->
  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
+
+     <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/lang/zh-cn/zh-cn.js"></script>
  <!-- <script src="__JQUERY__/jquery-2.1.1.min.js"></script> -->
  <script src="__BOOT__/js/bootstrap.min.js"></script>
+<!--  <script type="text/javascript">
+   var a_ue = UE.getEditor('another_editor'); 
+ </script> -->
  <script src="__PUB__/mtgadmin/mtg.js"></script>
+ <link rel="stylesheet" href="__PUB__/mtgadmin/Home.css">
 <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
    <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+
+        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
        <!--  <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
-<link rel="stylesheet" href="__PUB__/time/css/material.min.css" />
+  <link rel="stylesheet" href="__PUB__/time/css/material.min.css" />
   <link rel="stylesheet" href="__PUB__/time/css/bootstrap-material-datetimepicker.css" />
   <script type="text/javascript" src="__PUB__/time/js/material.min.js"></script>
   <script type="text/javascript" src="__PUB__/time/js/moment-with-locales.min.js"></script>
   <script type="text/javascript" src="__PUB__/time/js/bootstrap-material-datetimepicker.js"></script>
 
+
+
 </head>
-<body>
+<body style="background:url('__PUB__/photo/b7.jpg')">
    <include  file="Public/sbider"  />
   
 <input type="hidden" id="modify_group" value="{:U('Admin/Index/modify_group')}">
+<input type="hidden" id="add_task" value="{:U('Home/Index/add_task')}">
+<input type="hidden" id="get_user_all_ask" value="{:U('Home/Index/get_user_all_ask')}">
+
+
+
+
+  </div>
+
+
+<div class="ueditor_glo"></div>
+    <div class="ueditor_menu">
+    <!--   <ul class="nav nav-tabs">
+        <li class="active"><button  type="button" id="show_ueditor" class="btn btn-danger">显示任务</button></li>
+        <li> <button  type="button" class="btn btn-success" id="write_report">写报告</button></li>
+        <li> <button  type="button" class="btn btn-success" id="pub_report">提交报告</button></li>
+        <li> <button  type="button" class="btn btn-warning" id="close_ueditor">全部关闭</button></li>
+      </ul> -->
+      <ol class="breadcrumb">
+
+  <button  style="float: right;" type="button" class="btn btn-warning" id="close_ueditor_home">全部关闭</button>
+ 
+   
+</ol>
+   
+    </div>
+    <div class="ueditor_show">
+        <script id="another_editor" type="text/plain" style="width:800px;height:400px;">
+        <div id="m2"></div>
+        </script>
+      
+    </div>
+
+
+</script>
 
 <div class="task_b"></div>
-
+  
   <div class="htmleaf-container">
     
-    <div class="container well task_m" style=" background-color:orange;">
-    
+    <div class="container well task_m" style=" background-color:orange;  border-radius: 20px;">
+              <div style="float: right;margin-top: 300px">
+                     <button type="button" class="btn btn-warning sss" id="cancel_task">取消</button>
+                     <button type="button" class="btn btn-success sss" id="pub_task">发布</button>
+             </div>
       <div class="row">
         <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+                <form action="" method="get"> 
+                  <font color="#FF0000">   选择任务类型：</font></br>
+<label><input name="Fruit" type="radio" checked=""  id="end_sel_time" value="" />短期(默认8小时)</label> 
+&nbsp;&nbsp;&nbsp;
+<label><input name="Fruit" type="radio" checked=""    id="long_sel" value="" />长期 </label> 
+
+</form> 
+
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-                <input type="text" id="date-start" class="form-control floating-label" placeholder="开始时间">
+                <font color="#FF0000">开始时间</font>
+                <input type="text" id="date-start" class="form-control floating-label" value="" placeholder="">
               </div>
             </div>
           </div>
           <div class="row" style="margin-top: 40px">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-                <input type="text" id="date-end" class="form-control floating-label" placeholder="结束时间">
+               <font color="#FF0000">结束时间</font>
+                <input type="text" id="date-end" class="form-control floating-label" value="" placeholder="">
+         
+              </div>
+            </div>
+          </div>
+       
+         <div class="row" style="margin-top: 40px">
+            <div class="col-md-12">
+              <div class="form-control-wrapper">
+            标题：  <input type="text" class="form-control" placeholder="" id="task_title">
               </div>
             </div>
           </div>
             <div class="row" style="margin-top: 40px">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-              任务内容：
-                    <textarea rows="5" cols="60"></textarea> 
-              </div>
+              任务内容：          
+    <script id="editor" type="text/plain" style="width:524px;height:200px;"></script>
+             </div>
             </div>
           </div>
-             <div class="row" style="margin-top: 40px">
-            <div class="col-md-12">
-              <div class="form-control-wrapper">
-     <button type="button" class="btn btn-warning sss" id="cancel_task">取消</button>
-     <button type="button" class="btn btn-success sss" id="pub_task()">发布</button>
-              </div>
-            </div>
-          </div>
+        
         </div>
 
       </div>
     </div>
   </div>
 
-
+  
  <div class="table_div" >
-   <table id="table_id" class="display">
+ <h2 align="center">你的小兵</h2>
+   <table id="table_id" class=" stripe">
     <thead>
         <tr>
-            <th >序号</th>
-            <th>姓名</th>
-            <th>用户等级</th>
-            <th>最后一次登陆时间</th>
-            <th>任务数量</th>
- 			       <th>布置任务</th>
-             <th>查看任务列表</th>
+            <th ><span class="label label-warning">序号</span></th>
+            <th><span class="label label-warning">姓名</span></th>
+            <th><span class="label label-warning">用户等级</span></th>
+            <th><span class="label label-warning">最后一次登陆时间</span></th>
+            <th><span class="label label-warning">任务数量</span></th>
+ 			       <th><span class="label label-warning">布置任务</span></th>
+             <th><span class="label label-warning">查看任务列表</span></th>
         </tr>
     </thead>
     <tbody>
 
    <volist name="member_data" id="value" key="key" >
-        <tr>
+        <tr >
             <td>{$key}</td>
             <td >{$value.realname}</td>
             <td id="{$value.id}_group">{$value.group_name}</td>
             <td>{$value.last_login_time}</td>
-            <td>1</td>
-            <td>  <button type="button" onclick="assign_task({$key})" class="btn btn-default btn-sm">
+            <td id="{$value['id']}_number">{$value.task_number}</td>
+            <td>  <button type="button" id="pub_button" onclick="assign_task({$value['id']})" class="btn btn-success">
       布置
    </button></td>
-           <td>  <button type="button" onclick="" class="btn btn-default btn-sm">
+ 
+           <td>  <a href="{:U('Home/Membertask/index',array('member_id'=>$value['id'],'realname'=>$value['realname']))}">  <button type="button"    class="btn btn-primary"> 
       查看
-   </button></td>
+    </button> </a></td>
         </tr>
     </volist>
     </tbody>
 </table>
 </div>
+
+    <input type="hidden" id="get_task_content" value="{:U('Home/Index/get_task_content')}">
+<input type="hidden" id="flag" value="0">
+<input type="hidden" id="flag_time" value="0">
 </body>
 
 <script>
 	$(document).ready( function () {
-    $('#table_id').DataTable();
-   
-
-
+   $('#table_id').DataTable({
+    language: {
+        "sProcessing": "处理中...",
+        "sLengthMenu": "显示 _MENU_ 项结果",
+        "sZeroRecords": "没有匹配结果",
+        "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+        "sInfoPostFix": "",
+        "sSearch": "搜索:",
+        "sUrl": "",
+        "sEmptyTable": "表中数据为空",
+        "sLoadingRecords": "载入中...",
+        "sInfoThousands": ",",
+        "oPaginate": {
+            "sFirst": "首页",
+            "sPrevious": "上页",
+            "sNext": "下页",
+            "sLast": "末页"
+        },
+        "oAria": {
+            "sSortAscending": ": 以升序排列此列",
+            "sSortDescending": ": 以降序排列此列"
+        }
+    },
+    
+});
 });
 
 
@@ -150,11 +245,15 @@
       ({
         weekStart: 0, format: 'YYYY/MM/DD HH:mm'
       });
+      // $('#date-start').bootstrapMaterialDatePicker(
+      //   'setDate',moment()
+      // )
       $('#date-start').bootstrapMaterialDatePicker
       ({
-        weekStart: 0, format: 'YYYY/MM/DD HH:mm'
+        weekStart: 1, format: 'YYYY/MM/DD HH:mm'
       }).on('change', function(e, date)
       {
+
         $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
       });
 
@@ -164,8 +263,21 @@
      $('.dtp-btn-cancel').text('取消');
      $(".dtp-btn-ok").text('确认');
      $(".floating-label").css('color','red');
+         
     });
+   
 
+  $(window).resize(function(){  
+  $('.task_m').css({  
+    position:'absolute',  
+    left:($(window).width()-$('.task_m').outerWidth())/2,  
+    top:($(window).height()-$('.task_m').outerHeight())/2+$(document).scrollTop()  
+  }) 
+}) 
+
+$(function(){
+$(window).resize();  
+});
 /*
  *此处的作用是：
  *var temp =$('date-start').bootstrapMaterialDatePicker();

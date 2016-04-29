@@ -37,6 +37,7 @@ class LoginController extends Controller
 		session('username',$username);
 		session('realname',$user_data['realname']);
 		session('group_id', $user_data['group_id']);
+		session('user_id',$user_data['id']);
 		if ($user_data['group_id'] == 1) {
 		$this->ajaxReturn(
 		array(
@@ -47,16 +48,27 @@ class LoginController extends Controller
 				)
 
 			);
-		}else if($user_data['group_id'] == 2 or $user_data['group_id'] == 3){
+		}else if($user_data['group_id'] == 2 or $user_data['group_id'] == 3){ 
 		$this->ajaxReturn(
 		array(
 				'flag'=>1,
-				'group'=>1,
+				
 				'url' =>U('Home/Index/index'),
 				'msg'=>'登录成功',
 				)
 
 			);
+		}else{
+		$this->ajaxReturn(
+		array(
+				'flag'=>1,
+			
+				'url' =>U('Member/Index/index'),
+				'msg'=>'登录成功',
+				)
+
+			);
+
 		}
 		}
 		else{

@@ -586,7 +586,8 @@
 		{
 			if(date)
 			{
-				this.$dtpElement.find('.dtp-actual-day').html(date.locale(this.params.lang).format('dddd'));
+
+				this.$dtpElement.find('.dtp-actual-day  ').html(date.locale(this.params.lang).format('dddd')+'qwer');
 				this.$dtpElement.find('.dtp-actual-month').html(date.locale(this.params.lang).format('MMM').toUpperCase());
 				this.$dtpElement.find('.dtp-actual-num').html(date.locale(this.params.lang).format('DD'));
 				this.$dtpElement.find('.dtp-actual-year').html(date.locale(this.params.lang).format('YYYY'));

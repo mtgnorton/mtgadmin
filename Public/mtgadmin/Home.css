@@ -1,0 +1,35 @@
+ .ueditor_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        /*background:#fff;*/
+        background-color:#060606;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .ueditor_show{
+        display:none;
+        background:#fff;
+        position:fixed;
+ 
+        top:15%;
+        left:30%;
+        z-index:20;
+        /*background:url( "../photo/b1.png");*/
+      
+        }
+        .ueditor_menu{
+         display:none;
+         position:fixed; 
+         width: 800px;
+        height: 5%;
+        top:10%;
+        left:30%;   
+        background-color:#f2dede;
+      
+        z-index:20;
+        }

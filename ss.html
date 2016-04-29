@@ -1,0 +1,35 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset=" utf-8">  
+<meta name="author" content="http://www.softwhy.com/" />  
+<title>jQuery实现的div垂直居中实例代码-蚂蚁部落</title>  
+<script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js">
+</script>
+<style type="text/css">  
+.className{  
+  margin:0 auto;  
+  width:200px;  
+  height:200px; 
+  background-color:#609; 
+}  
+</style>  
+<!-- <script type="text/javascript" src="mytest/jQuery/jquery-1.8.3.js"></script>   -->
+<script type="text/javascript">  
+$(window).resize(function(){  
+  $('.className').css({  
+    position:'absolute',  
+    left:($(window).width()-$('.className').outerWidth())/2,  
+    top:($(window).height()-$('.className').outerHeight())/2+$(document).scrollTop()  
+  }) 
+}) 
+
+$(function(){
+$(window).resize();  
+});
+</script>  
+</head>  
+<body>  
+<div class="className"></div> 
+</body>  
+</html>

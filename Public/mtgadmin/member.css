@@ -1,0 +1,134 @@
+        .mask{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .bomb_box  {
+        display:none;
+        background:#fff;
+        position:fixed;
+        width: 500px;
+        height: 200px;
+        top:25%;
+        left:35%;
+        z-index:20;
+
+      
+        }    
+        .ueditor_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        /*background:#fff;*/
+        background-color:#060606;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .ueditor_show{
+        display:none;
+        background:#fff;
+        position:fixed;
+        width: auto;
+        min-width: 800px;
+        max-width: 1800px;
+        height: 800px;
+        overflow: scroll;
+        z-index:20;
+        /*background:url( "../photo/b1.png");*/
+        
+        }
+       
+        .another_ueditor_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        /*background:#fff;*/
+        background-color:#060606;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:0.4;
+        }
+
+        .another_ueditor_show{
+        display:none;
+        background:#fff;
+        position:fixed;
+        width: auto;
+        height: 800px;
+    
+        z-index:20;
+        /*background:url( "../photo/b1.png");*/
+      
+        }
+        .ueditor_menu{
+         display:none;
+         position:absolute; 
+         width: 800px;
+        height: 5%;
+        
+        background-color:#f2dede;
+      
+        z-index:20;
+        }
+        #tooltip{
+            position: relative;    
+            width: 300px;
+            height: 50px;
+     
+            float: right;
+            display: inline-block;
+            margin-right: 100px
+        }
+        .color_all{
+          width: 100px;
+          height: 10px;  
+        
+          border-radius: 5px;
+          display: inline;
+          float: left;
+       
+          left: 100px;
+          position: absolute;
+        }
+        .color_1{
+         background-color: #57D0D6;
+          top: 5px;
+        }
+        .color_2{
+         background-color: #62D04E;
+          top: 35px;
+        }
+        .color_3{
+         background-color: #B76722;
+          top: 65px;
+        }
+        .color_4{
+         background-color: #E06AB1;
+          top: 95px;
+        }
+        .font{
+            height: 30px;
+        }
+        .fc-content-skeleton{
+            height: 100px;
+        }
+    /*    .fc-event-container{
+            width :200px;
+            float: left;
+        }*/
+  /*      .fc-content{
+            height: 150px
+        }*/

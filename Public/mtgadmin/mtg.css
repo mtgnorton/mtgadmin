@@ -1,3 +1,5 @@
+        
+        
         .mask{
         display:none;
         width:100%;
@@ -42,12 +44,43 @@
         position:fixed;
         max-width: 800px;
         min-height: 400px;
-        top:25%;
-        left:20%;
+   
         z-index:20;
-
+       
        font-size: 20px;
        
+        }
+       
+         .task_content_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+        background-color: #f2dede;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:1;
+      
+        }
+        .task_content_show{
+        display:none;
+        overflow: auto;
+        width:80%;
+        position:fixed;
+        background:#fff;  
+        z-index:10;
+        background-color: #fff;
+        height:80%;
+        opacity:1;
+        padding: 30px auto;
+        outline:green dotted thick;
+        margin-top: 20px;
+        }
+        .task_content_show_title{
+        text-align: center;
+         text-shadow: 10px 10px 10px #ddd;
         }
 
         #thename{

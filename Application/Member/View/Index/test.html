@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+    <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="__PUB__/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__PUB__/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="__PUB__/easyui/demo.css">
+	<link rel="stylesheet" href="__PUB__/mtgadmin/member_two.css">
+	<script type="text/javascript" src="__PUB__/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUB__/easyui/jquery.easyui.min.js"></script>
+    <script src="__BOOT__/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <include  file="Public/sbider" />
+  <div class="schedule">
+   <table class=" schedule-table ">
+      <caption>响应式表格布局</caption>
+      <thead>
+   		<th>1111</th>
+  		<th class="data_th">1111</th>
+      </thead>
+      <tbody>
+        <volist name="time_arr" id="value" key="key" >
+         <tr >
+            <td class="td_time">{$value}</td>
+       		<td>产品1</td>
+         </tr>
+     </volist>
+     </for>
+     </for>
+      </tbody>
+   </table>
+</div>  	
+<script>
+	var width = $(".data_th").css('width');
+	alert(width)
+	
+</script>
+</body>
+</html>
