@@ -47,35 +47,6 @@
 
 
 
-  </div>
-
-
-<div class="ueditor_glo"></div>
-    <div class="ueditor_menu">
-    <!--   <ul class="nav nav-tabs">
-        <li class="active"><button  type="button" id="show_ueditor" class="btn btn-danger">显示任务</button></li>
-        <li> <button  type="button" class="btn btn-success" id="write_report">写报告</button></li>
-        <li> <button  type="button" class="btn btn-success" id="pub_report">提交报告</button></li>
-        <li> <button  type="button" class="btn btn-warning" id="close_ueditor">全部关闭</button></li>
-      </ul> -->
-      <ol class="breadcrumb">
-
-  <button  style="float: right;" type="button" class="btn btn-warning" id="close_ueditor_home">全部关闭</button>
- 
-   
-</ol>
-   
-    </div>
-    <div class="ueditor_show">
-        <script id="another_editor" type="text/plain" style="width:800px;height:400px;">
-        <div id="m2"></div>
-        </script>
-      
-    </div>
-
-
-</script>
-
 <div class="task_b"></div>
   
   <div class="htmleaf-container">
@@ -92,9 +63,9 @@
               <div class="form-control-wrapper">
                 <form action="" method="get"> 
                   <font color="#FF0000">   选择任务类型：</font></br>
-<label><input name="Fruit" type="radio" checked=""  id="end_sel_time" value="" />短期(默认8小时)</label> 
+<label><input name="Fruit" type="radio" checked="checked"  id="short_time" value="" />短期(默认一天)</label> 
 &nbsp;&nbsp;&nbsp;
-<label><input name="Fruit" type="radio" checked=""    id="long_sel" value="" />长期 </label> 
+<label><input name="Fruit" type="radio"   id="long_time" value="" />长期(默认一周)</label> 
 
 </form> 
 
@@ -217,6 +188,7 @@
 
     $(document).ready(function()
     {
+      // $('#date-start').bootstrapMaterialDatePicker.setLocale('ch');
       $('#date').bootstrapMaterialDatePicker
       ({
         time: false

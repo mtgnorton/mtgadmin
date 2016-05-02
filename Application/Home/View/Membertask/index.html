@@ -73,10 +73,10 @@
         	 <td>{$value.title}</td>
                <td>  <button type="button"  onclick="view_task_content({$value['id']})"  class="btn btn-success">
       查看
-   </button></td>
-            <td>  <button type="button" id="pub_button" onclick="assign_task({$value['id']})" class="btn btn-primary">
+         </button></td>
+                  <td>  <a href="{:U('Home/Report/index',array('task_id'=>$value['id'],'realname'=>$member_realname))}"> <button type="button" id="pub_button"  class="btn btn-primary">
       查看
-   </button></td>
+   </button> </a> </td>
    
         </tr>
     </volist>
@@ -124,6 +124,7 @@
 }) 
 
 $(function(){
+  
 $(window).resize();  
 });
 </script>

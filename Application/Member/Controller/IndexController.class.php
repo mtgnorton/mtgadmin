@@ -107,17 +107,21 @@ public function index($value='')
 	{
 		$task_id 	= $insert_data['task_id'] 			= I('post.task_id');
 		$insert_data['content'] 						= I('post.content');
-		$now_time 	=$insert_data['push_time']			= date('Y-m-d',time());
+		$now_time 	= $insert_data['push_time']			= time();
 		$task_reportModel 								= M('task_report');
-		$is_exist 	= $task_reportModel->where("task_id=$task_id and push_time='$now_time'")->getField();
-	
-		if ($is_exist) {
-			$this->ajaxReturn(array(
+		$sql 		= "select push_time from mtg_task_report where task_id=$task_id order by push_time desc limit 1";
+		$last_time 	= $task_reportModel->query($sql);
+		$last_time  = $last_time[0]['push_time'];
+		$last_time 	= date("Y-m-d",$last_time);
+		$now_time 	= date("Y-m-d",$now_time);
+		if ($last_time == $now_time) {
+		$this->ajaxReturn(array(
 			'flag' 	=> 0,
 			'msg' 	=> '今日报告已经提交，不要重复提交'
 				));
-		exit;
+		exit;	
 		}
+	
 		$is_suc 										= $task_reportModel->add($insert_data);
 		if ($is_suc) {
 			$this->ajaxReturn(array(

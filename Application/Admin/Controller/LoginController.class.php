@@ -49,10 +49,10 @@ class LoginController extends Controller
 
 			);
 		}else if($user_data['group_id'] == 2 or $user_data['group_id'] == 3){ 
+		
 		$this->ajaxReturn(
 		array(
 				'flag'=>1,
-				
 				'url' =>U('Home/Index/index'),
 				'msg'=>'登录成功',
 				)

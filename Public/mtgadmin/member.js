@@ -143,10 +143,10 @@
                     async   : false,
                     error   : function (data) {
             
-                        sweetAlert(response.msg,'','error');
+                        sweetAlert(data.msg,'','error');
                     },
                     success : function (res) {
-
+                 
                   
                     if (res.flag == 1) {
                         swal(res.msg,'','success');
