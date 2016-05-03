@@ -13,9 +13,16 @@ class MembertaskController extends Controller
 public function index($value='')
 	{	
 
-		is_login();
+		$username 	=session('username');
+		if (empty($username)) {
+		$this->error('请登录',U('Admin/Login/index'), 3 );
+		}
+		if (!competence(session('group_id'),2)) {
+		$this->error('权限不符合',U('Admin/Login/index'), 3 );
+		}	
 		$realname 	 = session('realname');
 		$this 	-> assign('realname',$realname);
+		
 		$member_realname 	= I('get.realname');
 		$this->assign("member_realname",$member_realname);
 
@@ -31,7 +38,11 @@ public function index($value='')
 
 			public function get_task_content($value='')
 	{
+
 		$task_id 				= I('post.task_id');
+		if (empty($task_id)) {
+		$this->error('此页面无法访问');
+		}
 		$model 		= M();
 		$sql 		= "select content,title from mtg_pub_task where id=$task_id ";
 	

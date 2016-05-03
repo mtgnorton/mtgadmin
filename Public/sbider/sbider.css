@@ -25,7 +25,7 @@ a{text-decoration:none;}
 .statistics dt{background-image:url(./images/left/statistics.png)}
 .leftsidebar_box dl dd:last-child{padding-bottom:10px;}
 #n1{
-        background: #fbfdff; height:10px; width:20px;
+        background: #fbfdff; height:1px; width:1px;
 
     }
 

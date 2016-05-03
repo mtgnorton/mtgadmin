@@ -17,34 +17,34 @@
 
     <script>
 
-$(window).resize(function(){  
-  $('.ueditor_menu').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.ueditor_show').outerWidth())/2,  
-    top:($(window).height()-$('.ueditor_show').outerHeight())/2-$(".ueditor_menu").outerHeight()+$(document).scrollTop(),
-    width:$(".ueditor_show").width()
-  }) 
-  $('.ueditor_show').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.ueditor_show').outerWidth())/2,  
-    top:($(window).height()-$('.ueditor_show').outerHeight())/2+$(document).scrollTop()  
-  }) 
-    $('.another_ueditor_show').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.another_ueditor_show').outerWidth())/2,  
-    top:($(window).height()-$('.another_ueditor_show').outerHeight())/2+$(document).scrollTop()  
-  }) 
-    $("#another_editor").css({
-      width:$(".ueditor_show").width()  
-    })
+// $(window).resize(function(){  
+//   $('.ueditor_menu').css({  
+//     position:'absolute',  
+//     left:($(window).width()-$('.ueditor_show').outerWidth())/2,  
+//     top:($(window).height()-$('.ueditor_show').outerHeight())/2-$(".ueditor_menu").outerHeight()+$(document).scrollTop(),
+//     width:$(".ueditor_show").width()
+//   }) 
+//   $('.ueditor_show').css({  
+//     position:'absolute',  
+//     left:($(window).width()-$('.ueditor_show').outerWidth())/2,  
+//     top:($(window).height()-$('.ueditor_show').outerHeight())/2+$(document).scrollTop()  
+//   }) 
+//     $('.another_ueditor_show').css({  
+//     position:'absolute',  
+//     left:($(window).width()-$('.another_ueditor_show').outerWidth())/2,  
+//     top:($(window).height()-$('.another_ueditor_show').outerHeight())/2+$(document).scrollTop()  
+//   }) 
+//     $("#another_editor").css({
+//       width:$(".ueditor_show").width()  
+//     })
    
    
-}) 
+// }) 
 
-$(function(){
+// $(function(){
 
-$(window).resize();  
-});
+// $(window).resize();  
+// });
 </script>   
  <script src="__BOOT__/js/bootstrap.min.js"></script>
  <script src="__PUB__/mtgadmin/mtg.js"></script>
@@ -58,9 +58,7 @@ $(window).resize();
     <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.all.min.js"> </script>
     <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/lang/zh-cn/zh-cn.js"></script>
-    <script>
-
-
+ <script>
 
 </script>
 <style>
@@ -80,21 +78,21 @@ $(window).resize();
 </style>
 </head>
 <body>
-
+<input type="hidden" id="task_url" value="{:U('Member/Task/Index')}">
 <input type="hidden" id="get_task_content" value="{:U('Member/Index/get_task_content')}">
 <input type="hidden" id="json_task_data" value="{:U('Member/Index/json_task_data')}">
 <input type="hidden" id="pub_report_path" value="{:U('Member/Index/pub_report')}">
    <include  file="Public/sbider"  />
 
-    <div class="ueditor_glo"></div>
-    <div class="ueditor_menu">
+<!--     <div class="ueditor_glo"></div>
+    <div class="ueditor_menu"> -->
     <!--   <ul class="nav nav-tabs">
         <li class="active"><button  type="button" id="show_ueditor" class="btn btn-danger">显示任务</button></li>
         <li> <button  type="button" class="btn btn-success" id="write_report">写报告</button></li>
         <li> <button  type="button" class="btn btn-success" id="pub_report">提交报告</button></li>
         <li> <button  type="button" class="btn btn-warning" id="close_ueditor">全部关闭</button></li>
       </ul> -->
-      <ol class="breadcrumb" style="margin:0px; text-align: center" >
+  <!--     <ol class="breadcrumb" style="margin:0px; text-align: center" >
   <li class="active" style="float: left;"><a href="#" id="show_ueditor">显示任务</a></li>
   <li style="float: left;"><a href="#" id="write_report">写报告</a></li>
   <span align="center" id="time_s_e"></span>
@@ -113,15 +111,15 @@ $(window).resize();
    <div class="panel-body" id="task_content" >
    </div>
 </div>
-    </div>
+    </div> -->
 
 
-    <div class="another_ueditor_glo"></div>
+   <!--  <div class="another_ueditor_glo"></div>
         
     <div class="another_ueditor_show">
       <script id="another_editor" type="text/plain" style="width:800px;height:500px;">     
         </script>
-    </div>
+    </div> -->
 
   <div id="tooltip">
   <div class="font">3天以上的任务</div>

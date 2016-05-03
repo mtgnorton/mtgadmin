@@ -9,20 +9,22 @@
         top:0;
         left:0;
         height:100%;
-        opacity:0.4;
+        opacity:0.5;
         }
 
         .bomb_box  {
+            padding: 20px;
         display:none;
         background:#fff;
-        position:fixed;
+        position:relative;
         width: 500px;
         height: 200px;
         top:25%;
         left:35%;
         z-index:20;
-        background:url( "../photo/b1.png");
-      
+        /*background:url( "../photo/b1.png");*/
+        background-color: orange;
+        border-radius: 25px;
         }
         .task_b{
         display:none;
@@ -46,7 +48,7 @@
         min-height: 300px;
         height: 650px;
         z-index:20;
-       
+       overflow: auto;
        font-size: 20px;
        
         }
@@ -83,10 +85,31 @@
          text-shadow: 10px 10px 10px #ddd;
         }
 
-        #thename{
+        .theclass{
+         position: relative;
         font-size: 20px;
         float: left;
-        margin-top:20%;
+        top: 30px;
+    
+        }
+        .therank{
+
+        position: absolute;
+        float: left;
+         font-size: 20px;
+         font-weight: normal;
+         top: 30px;
+        }
+        #theselect{
+            position: absolute;
+           top:70px;
+           float: left;
+         
+        }
+        .thebutton{
+            position: relative;
+            float: right;
+            top: 70px;
         }
         #group{
             float: left;

@@ -19,6 +19,13 @@ class ReportController extends Controller
 {
 	public function index($value='')
 	{
+		$username 	=session('username');
+		if (empty($username)) {
+		$this->error('请登录',U('Admin/Login/index'), 3 );
+		}
+		if (!competence(session('group_id'),2)) {
+		$this->error('权限不符合',U('Admin/Login/index'), 3 );
+		}	
 	$model 			= M();
 	$task_id		= I('get.task_id');
 	$realname 		= I('get.realname');
@@ -34,8 +41,12 @@ class ReportController extends Controller
 	}
 	public function get_report_content($value='')
 	{
+
 	$model 		= M();
 	$report_id 	= I('post.report_id');
+	if (empty($report_id)) {
+	$this->error('此页面无法访问');
+	}
 	$sql 		= "select content from mtg_task_report where id=$report_id";
 	$data 		= $model->query($sql);
 	$content 	= htmlspecialchars_decode($data[0]['content']);

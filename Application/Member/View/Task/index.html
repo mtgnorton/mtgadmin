@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+ <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
+
+ <script src="__BOOT__/js/bootstrap.min.js"></script>
+ <script src="__PUB__/mtgadmin/task.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/member.css">
+   <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+ 
+
+        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
+    
+ <!-- <script src="__PUB__/mtgadmin/member.js"></script> -->
+
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+  <link rel="stylesheet" href="__PUB__/grumble/css/grumble.min.css?v=5">
+
+<script src="__PUB__/grumble/js/jquery.grumble.min.js?v=7"></script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+</style>
+</head>
+<body>
+
+<input type="hidden" id="ert">
+   <include  file="Public/sbider"  />
+
+<input type="hidden" id="pub_report_path" value="{:U('Member/Task/pub_report')}">
+
+   <div class="another_ueditor_glo"></div>
+    <div class="another_ueditor_menu">
+     <div class="panel-heading">
+
+      <h3 class="panel-title">任务标题：{$task_data.title}
+            <button type="button" class="btn btn-info report_button " id="report_return">
+    关闭</button>
+       <button type="button" class="btn btn-warning report_button" id="pub_report">提交</button>
+     <input type="hidden" id="task_id" value="{$task_id}">
+  </h3>
+  </div>
+
+    </div>      
+    <div class="another_ueditor_show">
+      <script id="another_editor" type="text/plain" style="">     
+        </script>
+    </div>
+
+<div class="panel panel-primary task_content">
+   <div class="panel-heading">
+
+      <h3 class="panel-title">任务标题：{$task_data.title}
+         <button type="button" class="btn btn-info task_button" id="task_return">
+          <a href="javascript:history.back(-1);" style="text-decoration:none; color:white">返回</a> </button>
+        <button type="button" class="btn btn-warning task_button" id="write_report">写报告</button></h3>
+
+   </div>
+   <div class="panel-body">
+      {$task_data.content}
+   </div>
+</div>
+ 
+ 
+ </body>  
+ 
+
+</html>

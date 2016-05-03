@@ -19,7 +19,7 @@
         <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
 
 </head>
-<body>
+<body style="background:url('__PUB__/photo/b8.jpg')">
    <include  file="Public/sbider"  />
    <div class="table_div" >
 <input type="hidden" id="modify_group" value="{:U('Admin/Index/modify_group')}">
@@ -27,27 +27,37 @@
 <div class="mask"></div>
 <div class="bomb_box" id="ph">
 
-<label class="thename" id="thename">姓名：</label>
-<label class="thename" id="thename" style="margin-left: 20px">等级：</label>
- <select name="group" id='group'>    
+<div class="theclass" id="thename">姓名：</div>
+
+
+
+<div class="theclass " id="theselect">
+<label for="" class="therank">等级:</label>
+ <select name="group" id='group' class="" style="margin-left: 60px;">    
    <volist name="group_data" id="value" key="key" >                       
-<option value="{$value.id}" >{$value.group_name}</option>
-  </volist>
+   <option value="{$value.id}" >{$value.group_name}</option>
+   </volist>
 </select>
- <button   type="button" id="close_group" class="btn btn-default btn-sm group">
+</div>
+<div class="thebutton">
+ <button   type="button" id="close_group" class="btn btn-danger ">
+取消
+</button>
+ <button   type="button" id="change_group" class="btn btn-success">
 确认
 </button>
 </div>
+</div>
 
-   <table id="table_id" class="display">
+   <table id="table_id" class="stripe">
     <thead>
         <tr>
-            <th>序号</th>
-            <th>姓名</th>
-            <th>用户等级</th>
-            <th>最后一次登陆时间</th>
-            <th>邮箱</th>
- 			<th>修改用户等级</th>
+           <th ><span class="label label-warning">序号</span></th>
+            <th ><span class="label label-warning">姓名</span></th>
+            <th ><span class="label label-warning">用户等级</span></th>
+            <th ><span class="label label-warning">最后一次登陆时间</span></th>
+            <th ><span class="label label-warning">邮箱</span></th>
+ 		 <th ><span class="label label-warning">修改用户等级</span></th>
         </tr>
     </thead>
     <tbody>
@@ -59,7 +69,7 @@
             <td id="{$value.id}_group">{$value.group_name}</td>
             <td>{$value.last_login_time}</td>
             <td>1</td>
-            <td>  <button type="button" onclick="modify_group({$value['id']},'{$value['realname']}')" class="btn btn-default btn-sm">
+            <td>  <button type="button" onclick="modify_group({$value['id']},'{$value['realname']}')" class="btn btn-info">
       修改
    </button></td>
         </tr>
@@ -70,10 +80,47 @@
 </body>
 
 <script>
-	$(document).ready( function () {
-    $('#table_id').DataTable();
+  $(document).ready( function () {
+   $('#table_id').DataTable({
+    language: {
+        "sProcessing": "处理中...",
+        "sLengthMenu": "显示 _MENU_ 项结果",
+        "sZeroRecords": "没有匹配结果",
+        "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+        "sInfoPostFix": "",
+        "sSearch": "搜索:",
+        "sUrl": "",
+        "sEmptyTable": "表中数据为空",
+        "sLoadingRecords": "载入中...",
+        "sInfoThousands": ",",
+        "oPaginate": {
+            "sFirst": "首页",
+            "sPrevious": "上页",
+            "sNext": "下页",
+            "sLast": "末页"
+        },
+        "oAria": {
+            "sSortAscending": ": 以升序排列此列",
+            "sSortDescending": ": 以降序排列此列"
+        }
+    },
+    
+});
 });
 
+  $(window).resize(function(){  
+  $('.bomb_box').css({  
+    position:'absolute',  
+    left:($(window).width()-$('.bomb_box').outerWidth())/2,  
+    top:($(window).height()-$('.bomb_box').outerHeight())/3+$(document).scrollTop()  
+  }) 
+}) 
+
+$(function(){
+$(window).resize();  
+});
 </script>
 
 </html>

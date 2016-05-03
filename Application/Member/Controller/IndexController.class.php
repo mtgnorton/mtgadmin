@@ -20,7 +20,14 @@ class IndexController extends Controller
 public function index($value='')
 	{	
 
-		is_login();
+		$username 	=session('username');
+		if (empty($username)) {
+		$this->error('请登录',U('Admin/Login/index'), 3 );
+		}
+		if (!competence(session('group_id'),3)) {
+		$this->error('权限不符合',U('Admin/Login/index'), 3 );
+		}	
+
 		$realname 	    = session('realname');
 		$this 	-> assign('realname',$realname);
 	
@@ -85,7 +92,9 @@ public function index($value='')
 	{
 		$task_id 				= I('post.task_id');
 		$pub_taskModel 			= M('pub_task');
-
+		if (empty($task_id)) {
+		$this->error('此页面无法访问');
+		}
 		$data 					= $pub_taskModel->where("id=$task_id")->find();
 
 	
@@ -98,45 +107,7 @@ public function index($value='')
 		$this->ajaxReturn($re_data);
 	}
 
-	/*
-	 *此处的作用是：
-	 *将用户对某个任务的报告存储到数据库
-	 *
-	 */
-	public function pub_report($value='')
-	{
-		$task_id 	= $insert_data['task_id'] 			= I('post.task_id');
-		$insert_data['content'] 						= I('post.content');
-		$now_time 	= $insert_data['push_time']			= time();
-		$task_reportModel 								= M('task_report');
-		$sql 		= "select push_time from mtg_task_report where task_id=$task_id order by push_time desc limit 1";
-		$last_time 	= $task_reportModel->query($sql);
-		$last_time  = $last_time[0]['push_time'];
-		$last_time 	= date("Y-m-d",$last_time);
-		$now_time 	= date("Y-m-d",$now_time);
-		if ($last_time == $now_time) {
-		$this->ajaxReturn(array(
-			'flag' 	=> 0,
-			'msg' 	=> '今日报告已经提交，不要重复提交'
-				));
-		exit;	
-		}
-	
-		$is_suc 										= $task_reportModel->add($insert_data);
-		if ($is_suc) {
-			$this->ajaxReturn(array(
-			'flag' 	=> 1,
-			'msg' 	=> '报告提交成功'
-				));
-		}else{
-		$this->ajaxReturn(array(
-			'flag' 	=> 0,
-			'msg' 	=> '报告提交失败'
-				));	
-		}
 
-
-	}
 	public function test($value='')
 	{
 		$time_arr = array('8:00分','9:00分','10:00分','11:00分','12:00分','13:00分','14:00分','15:00分','16:00分','17:00分','18:00分');

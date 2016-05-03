@@ -20,13 +20,21 @@ class IndexController extends Controller
 public function index($value='')
 	{	
 
-		is_login();
+		$username 	=session('username');
+		if (empty($username)) {
+		$this->error('请登录',U('Admin/Login/index'), 3 );
+		}
+		if (!competence(session('group_id'),1)) {
+		$this->error('权限不符合',U('Admin/Login/index'), 3 );
+		}
+		
 		$realname 	 = session('realname');
 		$this 	-> assign('realname',$realname);
+
 		$member_data 	= get_users(session('group_id'));
 		
 		$this->assign('member_data' , $member_data);
-
+		
 		$groupModel 	= M('group');
 		$group_data 	= $groupModel->select();
 		$this->assign('group_data',$group_data);
@@ -34,10 +42,12 @@ public function index($value='')
 		$this 	-> display();
 	}	
 	public function modify_group($value='')
-	{
+	{	
 		$user_id 			= I('post.id');
 		$data['group_id']	= I('post.group_id');
-	
+		if (empty($user_id) || empty($data['group_id'])) {
+		$this->error('此页面无法访问');
+		}
 		$memberModel 		= M('member');
 		$old_group_id 		= $memberModel->where("id=$user_id")->getField('group_id');
 		if ($old_group_id == $data['group_id']) {

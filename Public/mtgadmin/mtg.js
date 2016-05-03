@@ -84,10 +84,12 @@
 
          $("#thename").text('姓名：'+name);
 
-        
-         $("#close_group").unbind('click').bind('click',function(){
-                $(".mask").hide();
-                $(".bomb_box").hide();  
+        $("#close_group").unbind('click').bind('click',function(){
+          $(".mask").hide();
+           $(".bomb_box").hide();    
+        })
+         $("#change_group").unbind('click').bind('click',function(){
+              
                 var group_value = $("#group ").val();
 
                 $.ajax({
@@ -104,10 +106,13 @@
                     sweetAlert(response.msg,'','error');
                 },
                 success : function (response) {
+
                     if (response.flag == 1) {
                       swal(response.msg,'','success'); 
                       var temp = id+"_group";
                       $("#"+temp).text(response.group_name); 
+                        $(".mask").hide();
+                    $(".bomb_box").hide();  
                     }
                     else{
                       sweetAlert(response.msg,'','error');  
@@ -172,6 +177,7 @@
    *
    */
     function assign_task(user_id) {
+
       var ue   = UE.getEditor('editor');
         $(window).resize();  
       
@@ -183,8 +189,66 @@
        var  next_day_time  = getNowFormatDate(nextDate);
        $("#date-end").val(next_day_time);
 
-         $(".task_m").show();
-         $(".task_b").show();
+       var task_m_height = $(window).height()*0.8;
+      
+       $(".task_m").css({
+        height:task_m_height,
+       });
+
+        $(".task_m").show();
+         $(".task_b").show(); 
+   
+     
+         $('#ert').bind("myclick",function(){
+             $('#edui3_body').grumble(
+        {
+         text: '点击全屏!', 
+        angle: 60, 
+        distance: 1, 
+        showAfter: 500,
+        hideAfter: 500,
+        onHide: function(grumble, button) {
+        grumble.bubble.remove();
+        grumble.text.remove();
+        button && button.remove();
+    }
+        }
+      );
+
+      $('#edui160_body').grumble(
+        {
+        text: '上传文件!', 
+        angle: 60, 
+        distance: 1, 
+        showAfter: 1000,
+        hideAfter: 500,
+        onHide: function(grumble, button) {
+        grumble.bubble.remove();
+        grumble.text.remove();
+        button && button.remove();
+    }
+        }
+      );
+     $('#edui148_state').grumble(
+        {
+         text: '上传图片!', 
+        angle: 60, 
+        distance: 1, 
+        showAfter: 1500,
+        hideAfter: 500,
+    onHide: function(grumble, button) {
+
+        grumble.bubble.remove();
+        grumble.text.remove();
+        button && button.remove();
+    }
+        }
+      );
+         });
+
+    $('#ert').trigger("myclick"); 
+
+  $('#ert').unbind("myclick");
 
          $("#long_time").unbind('click').bind('click',function(){
          nextDate = new Date(curDate.getTime() + 7*24*60*60*1000);  
@@ -202,6 +266,9 @@
          // $('#date-end').bootstrapMaterialDatePicker('setMinDate', nowtime);
 
          $("#cancel_task").unbind('click').bind('click',function(){ 
+          $('#edui3_body').remove();
+          $('#edui160_body').remove();
+          $('#edui148_state').remove();
          $(".task_m").hide();
          $(".task_b").hide();
         })
@@ -225,8 +292,15 @@
           sweetAlert('内容不能为空','','error')
           return;
         }
-     
-   
+  
+       swal({
+         title: "确定要发布么",
+         type: "info",   showCancelButton: true,  
+         closeOnConfirm: false,  
+         showLoaderOnConfirm: true, 
+        },
+        function(){ 
+
          $.ajax({ 
                 cache   : false,
                 type    : "POST",
@@ -247,7 +321,8 @@
                 success : function (response) {
 
                     if (response.flag == 1) {
-                    swal(response.msg,'','success'); 
+                           setTimeout(function(){ 
+                   swal(response.msg,'','success'); 
                       $(".task_m").hide();
                       $(".task_b").hide();
                       temp = $("#"+user_id+"_number").text();
@@ -255,19 +330,24 @@
                       $("#"+user_id+"_number").text(temp);
                       $("#task_title").val('');
                       ue.setContent('');
-                    //      setTimeout(function(){
-                    // window.history.go(0); 
-                    // },300);
-                        
+                    },1000);
+                           
+               
 
                     }
                     else{
-                      sweetAlert(response.msg,'','error');
+            setTimeout(function(){ 
+            sweetAlert(response.msg,'','error');
+              },1000);
+                    
                     }
                 
                 },
         
             });
+   
+
+         });
         })
 
     }

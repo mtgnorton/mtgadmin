@@ -61,14 +61,24 @@
         height:100%;
         opacity:0.4;
         }
+        .another_ueditor_menu{
 
+        display:none;
+        background:#fff;
+        position:absolute;
+        width: auto;
+        height: 5%;  
+        background-color:#f2dede;
+      
+        z-index:20;
+        }
         .another_ueditor_show{
         display:none;
         background:#fff;
-        position:fixed;
+        position:relative;
         width: auto;
-        height: 500px;
-    
+        height: auto;
+        
         z-index:20;
         /*background:url( "../photo/b1.png");*/
       
@@ -86,14 +96,14 @@
         #tooltip{
             position: relative;    
             width: 300px;
-            height: 50px;
-     
+            height: auto;
             float: right;
             display: inline-block;
-            margin-right: 100px
+            margin-left: 2%;
+            overflow:visible;
         }
         .color_all{
-          width: 100px;
+          width:10%;
           height: 10px;  
         
           border-radius: 5px;
@@ -132,3 +142,25 @@
   /*      .fc-content{
             height: 150px
         }*/
+        .task_content{
+        width: 80%;
+        margin: 0px auto;
+        height: 80%;
+        overflow: auto;
+        }
+        .panel-body{
+          height: 800px;  
+        }
+        .panel-title{
+            height: 30px;
+            text-align: center;
+        }
+        .task_button{
+            float: right;
+            margin: auto 5px;
+        }
+      .report_button{
+        margin: 5px;
+         float: right;
+         margin-top: -5px;
+      }
