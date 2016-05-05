@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
-<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
 <META HTTP-EQUIV="expires" CONTENT="0">
     <link rel="stylesheet" type="text/css" href="__PUB__/DataTables/css/jquery.dataTables.css">
     <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery -->
  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
- 
+
  <!-- DataTables -->
  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
 
@@ -25,10 +25,10 @@
  <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
  <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
 
-   <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
-   
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+   <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
+
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+
   <link rel="stylesheet" href="__PUB__/time/css/material.min.css" />
   <link rel="stylesheet" href="__PUB__/time/css/bootstrap-material-datetimepicker.css" />
   <script type="text/javascript" src="__PUB__/time/js/material.min.js"></script>
@@ -45,7 +45,7 @@
 </head>
 <body style="background:url('__PUB__/photo/b7.jpg')">
    <include  file="Public/sbider"  />
-  
+
 <input type="hidden" id="modify_group" value="{:U('Admin/Index/modify_group')}">
 <input type="hidden" id="add_task" value="{:U('Home/Index/add_task')}">
 <input type="hidden" id="get_user_all_ask" value="{:U('Home/Index/get_user_all_ask')}">
@@ -55,9 +55,9 @@
 
 
 <div class="task_b"></div>
-  
+
   <div class="htmleaf-container">
-    
+
     <div class="container well task_m" style=" background-color:orange;  border-radius: 20px;">
               <div style="float: right;margin-top: 300px">
                      <button type="button" class="btn btn-warning sss" id="cancel_task">取消</button>
@@ -68,13 +68,13 @@
         <div class="row">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-                <form action="" method="get"> 
+                <form action="" method="get">
                   <font color="#FF0000">   选择任务类型：</font></br>
-<label><input name="Fruit" type="radio" checked="checked"  id="short_time" value="" />短期(默认一天)</label> 
+<label><input name="Fruit" type="radio" checked="checked"  id="short_time" value="" />短期(默认一天)</label>
 &nbsp;&nbsp;&nbsp;
-<label><input name="Fruit" type="radio"   id="long_time" value="" />长期(默认一周)</label> 
+<label><input name="Fruit" type="radio"   id="long_time" value="" />长期(默认一周)</label>
 
-</form> 
+</form>
 
               </div>
             </div>
@@ -92,36 +92,36 @@
               <div class="form-control-wrapper">
                <font color="#FF0000">结束时间</font>
                 <input type="text" id="date-end" class="form-control floating-label" value="" placeholder="">
-         
+
               </div>
             </div>
           </div>
-       
+
          <div class="row" style="margin-top: 40px">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-            任务标题：  <input type="text" class="form-control" placeholder="" id="task_title">
+            任务标题：  <input type="text" class="form-control" placeholder="" id="the_task_title">
               </div>
             </div>
           </div>
             <div class="row" style="margin-top: 40px">
             <div class="col-md-12">
               <div class="form-control-wrapper">
-              任务内容：          
+              任务内容：
     <script id="editor" type="text/plain" style="width:524px;height:200px;"></script>
              </div>
             </div>
           </div>
-        
+
         </div>
 
       </div>
     </div>
   </div>
 
-  
+
  <div class="table_div" >
- <h2 align="center">你的小兵</h2>
+<h2 align="center" style="color: orange">你的小兵</h2>
    <table id="table_id" class=" stripe">
     <thead>
         <tr>
@@ -146,8 +146,8 @@
             <td>  <button type="button" id="pub_button" onclick="assign_task({$value['id']})" class="btn btn-success">
       布置
    </button></td>
- 
-           <td>  <a href="{:U('Home/Membertask/index',array('member_id'=>$value['id'],'realname'=>$value['realname']))}">  <button type="button"    class="btn btn-primary"> 
+
+           <td>  <a href="{:U('Home/Membertask/index',array('member_id'=>$value['id'],'realname'=>$value['realname']))}">  <button type="button"    class="btn btn-primary">
       查看
     </button> </a></td>
         </tr>
@@ -188,7 +188,7 @@
             "sSortDescending": ": 以降序排列此列"
         }
     },
-    
+
 });
 });
 
@@ -216,7 +216,7 @@
       ({
         format: 'DD/MM/YYYY HH:mm',
         lang: 'fr',
-        weekStart: 1, 
+        weekStart: 1,
         cancelText : 'ANNULER'
       });
 
@@ -242,20 +242,20 @@
      $('.dtp-btn-cancel').text('取消');
      $(".dtp-btn-ok").text('确认');
      $(".floating-label").css('color','red');
-         
-    });
-   
 
-  $(window).resize(function(){  
-  $('.task_m').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.task_m').outerWidth())/2,  
-    top:($(window).height()-$('.task_m').outerHeight())/2+$(document).scrollTop()  
-  }) 
-}) 
+    });
+
+
+  $(window).resize(function(){
+  $('.task_m').css({
+    position:'absolute',
+    left:($(window).width()-$('.task_m').outerWidth())/2,
+    top:($(window).height()-$('.task_m').outerHeight())/2+$(document).scrollTop()
+  })
+})
 
 $(function(){
-$(window).resize();  
+$(window).resize();
 });
 /*
  *此处的作用是：
@@ -265,5 +265,5 @@ $(window).resize();
  */
     </script>
 
-       
+
 </html>

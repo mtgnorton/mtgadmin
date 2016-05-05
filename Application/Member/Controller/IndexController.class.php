@@ -18,7 +18,7 @@ use Think\Controller;
 class IndexController extends Controller
 {
 public function index($value='')
-	{	
+	{
 
 		$username 	=session('username');
 		if (empty($username)) {
@@ -26,13 +26,13 @@ public function index($value='')
 		}
 		if (!competence(session('group_id'),3)) {
 		$this->error('权限不符合',U('Admin/Login/index'), 3 );
-		}	
+		}
 
 		$realname 	    = session('realname');
 		$this 	-> assign('realname',$realname);
-	
+
 		$this 	-> display();
-	}	
+	}
 
 	/*
 	 *此处的作用是：
@@ -54,31 +54,31 @@ public function index($value='')
 			$re_data[$key]['end'] 		= date("Y-m-d",$value['end_time']);
 			$re_data[$key]['color'] 	= '#57D0D6';
 			$re_data[$key]['allDay'] 	= 1;
-			$re_data[$key]['title']		= date("m-d H:i",$value['start_time']).'至'.date("m-d H:i",$value['end_time']).'  作业内容点击查看';
+			$re_data[$key]['title']		= '标题:'.$value['title'];
 			}elseif($temp<=3*24*60*60 and $temp>24*60*60){
 			$re_data[$key]['start'] 	= date("Y-m-d",$value['start_time']);
 			$re_data[$key]['end'] 		= date("Y-m-d",$value['end_time']);
 			$re_data[$key]['color']		= '#62D04E'	;
 			$re_data[$key]['allDay'] 	= 1;
-			$re_data[$key]['title']		= date("m-d H:i",$value['start_time']).'至'.date("m-d H:i",$value['end_time']).'  作业内容点击查看';
+			$re_data[$key]['title']		= '标题:'.$value['title'];
 			}
 			elseif($temp <= 24*60*60 and $temp >= 8*60*60){
 			$re_data[$key]['start'] 	= date("Y-m-d\TH:i:s",$value['start_time']);
 			$re_data[$key]['end'] 		= date("Y-m-d\TH:i:s",$value['end_time']);
 			$re_data[$key]['color'] 	= '#B76722';
 			$re_data[$key]['allDay'] 	= 1	;
-			$re_data[$key]['title']		= date("m-d H:i",$value['start_time']).'至'.date("m-d H:i",$value['end_time']).'  作业内容点击查看';
+			$re_data[$key]['title']		= '标题:'.$value['title'];
 			}else{
 			$re_data[$key]['start'] 	= date("Y-m-d\TH:i:s",$value['start_time']);
 			$re_data[$key]['end'] 		= date("Y-m-d\TH:i:s",$value['end_time']);
 			$re_data[$key]['color'] 	= '#E06AB1';
-			$re_data[$key]['allDay'] 	= 0	;	
-			$re_data[$key]['title']		= '作业内容点击查看';
+			$re_data[$key]['allDay'] 	= 0	;
+			$re_data[$key]['title']		=  '标题:'.$value['title'];
 			}
-		
-			
+
+
 		}
-	
+
 		$re_data 	= json_encode($re_data);
 		echo $re_data;
 	}
@@ -97,7 +97,7 @@ public function index($value='')
 		}
 		$data 					= $pub_taskModel->where("id=$task_id")->find();
 
-	
+
 
 		$re_data['start_time'] 	= date('m-d H:i',$data['start_time']);
 		$re_data['end_time'] 	= date('m-d H:i',$data['end_time']);

@@ -12,10 +12,10 @@
  <script src="__PUB__/mtgadmin/task.js"></script>
 <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/member.css">
    <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
- 
 
-        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
-    
+
+        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
+
  <!-- <script src="__PUB__/mtgadmin/member.js"></script> -->
 
     <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.config.js"></script>
@@ -44,6 +44,7 @@
 <body>
 
 <input type="hidden" id="ert">
+<input type="hidden" id="apply_finish_path" value="{:U('Member/Task/apply_finish')}">
    <include  file="Public/sbider"  />
 
 <input type="hidden" id="pub_report_path" value="{:U('Member/Task/pub_report')}">
@@ -60,28 +61,33 @@
   </h3>
   </div>
 
-    </div>      
+    </div>
     <div class="another_ueditor_show">
-      <script id="another_editor" type="text/plain" style="">     
+      <script id="another_editor" type="text/plain" style="">
         </script>
     </div>
 
 <div class="panel panel-primary task_content">
    <div class="panel-heading">
 
-      <h3 class="panel-title">任务标题：{$task_data.title}
+    <h3 class="panel-title">任务标题：<font color="orange">{$task_data.title}</font>  时间：<font color="orange">{$task_data.start_time}</font>--<font color="orange">{$task_data.end_time}</font>
          <button type="button" class="btn btn-info task_button" id="task_return">
-          <a href="javascript:history.back(-1);" style="text-decoration:none; color:white">返回</a> </button>
+          <a  href="javascript:" onclick="self.location=document.referrer;" style="text-decoration:none; color:white">返回</a> </button>
         <button type="button" class="btn btn-warning task_button" id="write_report">写报告</button></h3>
 
+      <if condition="$task_data['apply_finish'] eq 1">
+       <button type="button" class="btn btn-success task_button" id="is_finish">已申请完成</button></h3>
+      <else />
+    <button type="button" class="btn btn-success task_button" id="apply_finish">申请完成</button></h3>
+    </if>
    </div>
    <div class="panel-body">
       {$task_data.content}
    </div>
 </div>
- 
- 
- </body>  
- 
+
+
+ </body>
+
 
 </html>

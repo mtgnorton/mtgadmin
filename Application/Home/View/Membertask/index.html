@@ -8,46 +8,56 @@
  	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
  	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
  	<script src="__BOOT__/js/bootstrap.min.js"></script>
- 	<link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">   
-    <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
+ 	<link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+    <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
     <script src="__PUB__/mtgadmin/mtg.js"></script>
+     <style type="text/css">
+
+  .label-warning{
+ background-color: #ff5722;
+}
+  </style>
 </head>
    <include  file="Public/sbider"  />
 <body style="background:url('__PUB__/photo/b7.jpg')">
 	<div class="table_div" >
-	   <button type="button" class="btn btn-default btn-lg" style="padding:4px 8px;font-size:14px;float: right;">
-      <a href="javascript:history.go(-1);location.reload()" style="text-decoration:none; color: black;">返回</a> 
-  
-   </button>
+    <input type="hidden" id="index_path" value="{:U('Home/Index/index')}">
    <input type="hidden" id="get_task_content" value="{:U('Home/Membertask/get_task_content')}">
-
+  <input type="hidden" id="check_task" value="{:U('Home/Membertask/check_task')}">
    <div class="task_content_glo">
    <div style="width: 10%;height: 70px;float: right;margin-top: 5%"></div>
-     <button type="button" class="btn btn-danger" id="close_task_content" style="float: right;margin-top: 1%">关闭</button>
+
 
    <h2 class="task_content_show_title"></h2>
-     
+
    </div>
 
    <div class="task_content_show">
 
-   
+
    <div class="panel panel-success">
    <div class="panel-heading">
-      <h3 class="panel-title "></h3>
+    <button type="button" class="btn btn-danger" id="close_task_content" style="float: right;margin-top:-10px">关闭</button>
+      <h3 class="panel-title" align="center" id="task_title"></h3>
    </div>
    <div class="panel-body task_content_show_content">
-      
+
    </div>
 </div>
 
    </div>
- <h2 align="center">{$member_realname}任务列表</h2>
+     </style>
+     <button type="button" class="btn btn-danger " style="padding:4px 8px;font-size:14px;float: right;margin-top: 8px">
+      <a href="javascript:" onclick="back_index()" style="text-decoration:none; color: white;">返回</a>
+
+   </button>
+ <h2 align="center" style="color: orange">任务列表</h2>
+ <h3 align="center" style="color: #5cb85c;margin-right: 30px">姓名：{$member_realname}</h3>
    <table id="table_id" class=" stripe">
     <thead>
         <tr>
-            <th ><span class="label label-warning">序号</span></th>
+            <th ><span class="label label-warning" >序号</span></th>
             <th><span class="label label-warning">开始时间</span></th>
             <th><span class="label label-warning">结束时间</span></th>
             <th><span class="label label-warning">状态</span></th>
@@ -60,24 +70,32 @@
     <tbody>
 
    <volist name="task_data" id="value" key="key" >
-        <tr >
+        <tr id="task_tr_{$value.id}">
             <td>{$key}</td>
          	<td>{$value.start_time}</td>
          	<td>{$value.end_time}</td>
-         	<if condition="$value['complete'] eq 0">
+         	<if condition="$value['apply'] eq 0">
 
          	<td>未完成</td>
          	<else />
-         	<td>已完成</td>
+         	<td><button type="button" style="margin-left: -12px" class="btn btn-default "  id="check_{$value.id}" onmouseover="check_over({$value['id']}) " onmouseout="check_out({$value['id']})" onclick="check_click({$value['id']})" >待审核</button></td>
         	 </if>
         	 <td>{$value.title}</td>
                <td>  <button type="button"  onclick="view_task_content({$value['id']})"  class="btn btn-success">
       查看
          </button></td>
-                  <td>  <a href="{:U('Home/Report/index',array('task_id'=>$value['id'],'realname'=>$member_realname))}"> <button type="button" id="pub_button"  class="btn btn-primary">
-      查看
-   </button> </a> </td>
-   
+                  <td>
+                    <a href="{:U('Home/Report/index',array('task_id'=>$value['id'],'realname'=>$member_realname))}">
+                    <if condition="($value.status neq  null) and ($value.status neq 1)">
+                      <label class="new_report" for="">新</label>
+                      <else />
+                    </if>
+                    <button type="button" id="pub_button"  class="btn btn-primary">
+                    查看
+                    </button>
+                   </a>
+                  </td>
+
         </tr>
     </volist>
     </tbody>
@@ -111,21 +129,22 @@
             "sSortDescending": ": 以降序排列此列"
         }
     },
-    
+
 });
 });
 
-  $(window).resize(function(){  
-  $('.task_content_show').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.task_content_show').outerWidth())/2,  
-    top:($(window).height()-$('.task_content_show').outerHeight())/2+$(document).scrollTop()  
-  }) 
-}) 
+  $(window).resize(function(){
+  $('.task_content_show').css({
+    position:'absolute',
+    left:($(window).width()-$('.task_content_show').outerWidth())/2,
+    top:($(window).height()-$('.task_content_show').outerHeight())/2+$(document).scrollTop()
+  })
+})
 
 $(function(){
-  
-$(window).resize();  
+
+
+$(window).resize();
 });
 </script>
 </html>

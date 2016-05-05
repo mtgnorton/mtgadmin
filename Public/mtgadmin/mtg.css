@@ -1,5 +1,5 @@
-        
-        
+
+
         .mask{
         display:none;
         width:100%;
@@ -50,9 +50,9 @@
         z-index:20;
        overflow: auto;
        font-size: 20px;
-       
+
         }
-       
+
          .task_content_glo{
         display:none;
         width:100%;
@@ -64,14 +64,14 @@
         left:0;
         height:100%;
         opacity:1;
-      
+
         }
         .task_content_show{
         display:none;
         overflow: auto;
         width:80%;
         position:fixed;
-        background:#fff;  
+        background:#fff;
         z-index:10;
         background-color: #fff;
         height:80%;
@@ -90,7 +90,7 @@
         font-size: 20px;
         float: left;
         top: 30px;
-    
+
         }
         .therank{
 
@@ -104,7 +104,7 @@
             position: absolute;
            top:70px;
            float: left;
-         
+
         }
         .thebutton{
             position: relative;
@@ -118,7 +118,7 @@
         }
          .group{
         float: right;
-       
+
         margin-top:20%;
 
         }
@@ -131,3 +131,15 @@
     margin-right: auto;
     margin-top:100px
     }
+    .new_report{
+        float: right;
+        margin-top: -10px;
+        color: red
+    }
+   .check_button_hover{
+    background-color:red;
+
+   }
+   .fc-center{
+    margin-top: 100px;
+   }

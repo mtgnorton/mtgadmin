@@ -12,7 +12,7 @@ var defaultParams = {
   showCancelButton: false,
   closeOnConfirm: true,
   closeOnCancel: true,
-  confirmButtonText: 'OK',
+  confirmButtonText: '确认',
   confirmButtonColor: '#8CD4F5',
   cancelButtonText: 'Cancel',
   imageUrl: null,

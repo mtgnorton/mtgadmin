@@ -20,8 +20,8 @@
         left:35%;
         z-index:20;
 
-      
-        }    
+
+        }
         .ueditor_glo{
         display:none;
         width:100%;
@@ -46,9 +46,9 @@
         overflow: scroll;
         z-index:20;
         /*background:url( "../photo/b1.png");*/
-        
+
         }
-       
+
         .another_ueditor_glo{
         display:none;
         width:100%;
@@ -67,9 +67,9 @@
         background:#fff;
         position:absolute;
         width: auto;
-        height: 5%;  
+        height: 5%;
         background-color:#f2dede;
-      
+
         z-index:20;
         }
         .another_ueditor_show{
@@ -78,23 +78,23 @@
         position:relative;
         width: auto;
         height: auto;
-        
+
         z-index:20;
         /*background:url( "../photo/b1.png");*/
-      
+
         }
         .ueditor_menu{
          display:none;
-         position:absolute; 
+         position:absolute;
          width: 800px;
         height: 5%;
-        
+
         background-color:#f2dede;
-      
+
         z-index:20;
         }
         #tooltip{
-            position: relative;    
+            position: relative;
             width: 300px;
             height: auto;
             float: right;
@@ -104,12 +104,12 @@
         }
         .color_all{
           width:10%;
-          height: 10px;  
-        
+          height: 10px;
+
           border-radius: 5px;
           display: inline;
           float: left;
-       
+
           left: 100px;
           position: absolute;
         }
@@ -149,7 +149,7 @@
         overflow: auto;
         }
         .panel-body{
-          height: 800px;  
+          height: 800px;
         }
         .panel-title{
             height: 30px;
@@ -164,3 +164,33 @@
          float: right;
          margin-top: -5px;
       }
+      #apply_finish,#is_finish{
+        margin-top: -30px;
+      }
+    /*  .fc-title{
+        min-width: 100px;
+      }*/
+      .fc-more-popover{
+        height: 200px;
+        overflow: auto;
+        background-color:#fff;
+
+      }
+      div.fc-more-popover > div.fc-body >div.fc-event-container>a.fc-day-grid-event
+  {
+        width: 180px;
+  }
+  #time_prompt{
+    display: none;
+    height: 50px;
+    width: 200px;
+    background-color: #E06AB1;
+    border-radius: 20px;
+    position:absolute;
+    top:440px;
+    left: 502px;
+    z-index: 100;
+    text-align: center;
+    padding: 12px;
+
+  }

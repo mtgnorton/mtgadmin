@@ -1,4 +1,4 @@
-	
+
     /*
      *此函数的作用是：
      *获得html页面中隐藏的跳转页面url
@@ -16,34 +16,34 @@
             type: "POST",
             url: del_suffix($('#login_judge').val()),
             data: {
-            data :$("#login_form").serializeArray(), 
+            data :$("#login_form").serializeArray(),
             }, // 你的formi
             error: function(data) {
                 alert("Connection error");
             },
             success : function (response) {
-              
+
                 if (response.flag == 1) {
-             
+
                 swal(response.msg,'','success');
 
-                  
+
                 setTimeout(function(){
-                window.location.href = response.url;   
+                window.location.href = response.url;
                 },1000);
-               
+
                 }
                 else{
                sweetAlert(response.msg,'','error');
                return;
                  }
 
-                
+
             },
         });
 
     }
-    function register_judge(argument) { 
+    function register_judge(argument) {
     var index_url   =  del_suffix($('#login_index').val());
 
         $.ajax({
@@ -51,34 +51,34 @@
             type: "POST",
             url: del_suffix($('#register_judge').val()),
             data: {
-            data :$("#register_form").serializeArray(), 
+            data :$("#register_form").serializeArray(),
             }, // 你的formi
             error: function(data) {
                 alert("Connection error");
             },
             success : function (response) {
-             
+
                 if (response.flag == 1) {
 
                 swal(response.msg,'','success');
 
-             
+
                 setTimeout(function(){
-                window.location.href = index_url;   
+                window.location.href = index_url;
                 },1000);
-               
+
                 }
                 else{
                sweetAlert(response.msg,'','error');
                return;
                  }
 
-                
+
             },
         });
     }
     function modify_group(id,name) {
-       
+
          $(".mask").show();
          $(".bomb_box").show();
 
@@ -86,10 +86,10 @@
 
         $("#close_group").unbind('click').bind('click',function(){
           $(".mask").hide();
-           $(".bomb_box").hide();    
+           $(".bomb_box").hide();
         })
          $("#change_group").unbind('click').bind('click',function(){
-              
+
                 var group_value = $("#group ").val();
 
                 $.ajax({
@@ -98,32 +98,32 @@
                 url     : del_suffix($('#modify_group').val()),
                 data    : {
                 id      : id,
-                group_id: group_value              
+                group_id: group_value
                 },
                 async   : false,
                 error   : function (data) {
-        
+
                     sweetAlert(response.msg,'','error');
                 },
                 success : function (response) {
 
                     if (response.flag == 1) {
-                      swal(response.msg,'','success'); 
+                      swal(response.msg,'','success');
                       var temp = id+"_group";
-                      $("#"+temp).text(response.group_name); 
-                        $(".mask").hide();
-                    $(".bomb_box").hide();  
+                      $("#"+temp).text(response.group_name);
+                      $(".mask").hide();
+                      $(".bomb_box").hide();
                     }
                     else{
-                      sweetAlert(response.msg,'','error');  
-                    }  
-                
-                },
-        
-            }); 
-                });       
+                      sweetAlert(response.msg,'','error');
+                    }
 
-        
+                },
+
+            });
+                });
+
+
     }
     function logout(){
       $.ajax({
@@ -132,27 +132,27 @@
               url     : del_suffix($('#logout').val()),
               data    : {
               logout  : 1,
-            
+
               },
               async   : false,
               error   : function (data) {
-      
+
                   sweetAlert(response.msg,'','error');
               },
               success : function (response) {
-                
+
                   swal(response.msg,'','success');
                  setTimeout(function(){
-                 window.location.href = response.url;   
+                 window.location.href = response.url;
                   },1000);
-               
+
               },
-      
-          }); 
+
+          });
     }
     function getNowFormatDate(flag) {
     var date = flag;
-   
+
 
 
     var seperator1 = "/";
@@ -167,9 +167,9 @@
     }
     var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
             + " " + date.getHours() + seperator2 + date.getMinutes();
-           
+
     return currentdate;
-  } 
+  }
 
   /*
    *此处的作用是：
@@ -179,32 +179,32 @@
     function assign_task(user_id) {
 
       var ue   = UE.getEditor('editor');
-        $(window).resize();  
-      
+        $(window).resize();
+
         var flag_time=1;
 
         $('#date-start').bootstrapMaterialDatePicker('setDate', (new Date()));
-       var curDate = new Date(); 
-       var nextDate = new Date(curDate.getTime() + 24*60*60*1000);  
+       var curDate = new Date();
+       var nextDate = new Date(curDate.getTime() + 24*60*60*1000);
        var  next_day_time  = getNowFormatDate(nextDate);
        $("#date-end").val(next_day_time);
 
        var task_m_height = $(window).height()*0.8;
-      
+
        $(".task_m").css({
         height:task_m_height,
        });
 
         $(".task_m").show();
-         $(".task_b").show(); 
-   
-     
+         $(".task_b").show();
+
+
          $('#ert').bind("myclick",function(){
              $('#edui3_body').grumble(
         {
-         text: '点击全屏!', 
-        angle: 60, 
-        distance: 1, 
+         text: '点击全屏!',
+        angle: 60,
+        distance: 1,
         showAfter: 500,
         hideAfter: 500,
         onHide: function(grumble, button) {
@@ -217,9 +217,9 @@
 
       $('#edui160_body').grumble(
         {
-        text: '上传文件!', 
-        angle: 60, 
-        distance: 1, 
+        text: '上传文件!',
+        angle: 60,
+        distance: 1,
         showAfter: 1000,
         hideAfter: 500,
         onHide: function(grumble, button) {
@@ -231,9 +231,9 @@
       );
      $('#edui148_state').grumble(
         {
-         text: '上传图片!', 
-        angle: 60, 
-        distance: 1, 
+         text: '上传图片!',
+        angle: 60,
+        distance: 1,
         showAfter: 1500,
         hideAfter: 500,
     onHide: function(grumble, button) {
@@ -246,42 +246,43 @@
       );
          });
 
-    $('#ert').trigger("myclick"); 
+    $('#ert').trigger("myclick");
 
-  $('#ert').unbind("myclick");
+    $('#ert').unbind("myclick");
 
          $("#long_time").unbind('click').bind('click',function(){
-         nextDate = new Date(curDate.getTime() + 7*24*60*60*1000);  
+         nextDate = new Date(curDate.getTime() + 7*24*60*60*1000);
          var next_sev_day_time  = getNowFormatDate(nextDate);
-           $("#date-end").val(next_sev_day_time);
-           flag_time=0;
+         $("#date-end").val(next_sev_day_time);
+         flag_time=0;
         })
 
           $("#short_time").unbind('click').bind('click',function(){
-         nextDate = new Date(curDate.getTime() + 24*60*60*1000);  
-         next_day_time  = getNowFormatDate(nextDate);
-           $("#date-end").val(next_day_time);
-           flag_time=1;
+             nextDate = new Date(curDate.getTime() + 24*60*60*1000);
+             next_day_time  = getNowFormatDate(nextDate);
+             $("#date-end").val(next_day_time);
+             flag_time=1;
         })
          // $('#date-end').bootstrapMaterialDatePicker('setMinDate', nowtime);
 
-         $("#cancel_task").unbind('click').bind('click',function(){ 
-          $('#edui3_body').remove();
-          $('#edui160_body').remove();
-          $('#edui148_state').remove();
-         $(".task_m").hide();
-         $(".task_b").hide();
-        })
-         $("#pub_task").unbind('click').bind('click',function(){ 
-        
-         var start_time =  $('#date-start').bootstrapMaterialDatePicker('getDate').val();
-         var end_time  =  $('#date-end').bootstrapMaterialDatePicker('getDate').val();
-        if (end_time == '') {
-          end_time = $("#end_time").val();
-        }
+         $("#cancel_task").unbind('click').bind('click',function(){
+            $('#edui3_body').remove();
+            $('#edui160_body').remove();
+            $('#edui148_state').remove();
+            $(".task_m").hide();
+            $(".task_b").hide();
+        });
 
-        var task_title = $("#task_title").val();
-      
+         $("#pub_task").unbind('click').bind('click',function(){
+
+          var start_time =  $('#date-start').bootstrapMaterialDatePicker('getDate').val();
+          var end_time  =  $('#date-end').bootstrapMaterialDatePicker('getDate').val();
+          if (end_time == '') {
+            end_time = $("#end_time").val();
+          }
+
+        var task_title = $("#the_task_title").val();
+
         if (task_title =='') {
          sweetAlert('标题不能为空','','error')
           return;
@@ -292,16 +293,18 @@
           sweetAlert('内容不能为空','','error')
           return;
         }
-  
+
        swal({
          title: "确定要发布么",
-         type: "info",   showCancelButton: true,  
-         closeOnConfirm: false,  
-         showLoaderOnConfirm: true, 
+         type: "info",   showCancelButton: true,
+         closeOnConfirm: false,
+         showLoaderOnConfirm: true,
+        confirmButtonText:'确认',
+         cancelButtonText:'取消'
         },
-        function(){ 
+        function(){
 
-         $.ajax({ 
+         $.ajax({
                 cache   : false,
                 type    : "POST",
                 url     : del_suffix($('#add_task').val()),
@@ -315,37 +318,37 @@
                 },
                 async   : false,
                 error   : function (data) {
-                
+
                     sweetAlert(response.msg,'','error');
                 },
                 success : function (response) {
 
                     if (response.flag == 1) {
-                           setTimeout(function(){ 
-                   swal(response.msg,'','success'); 
+                           setTimeout(function(){
+                   swal(response.msg,'','success');
                       $(".task_m").hide();
                       $(".task_b").hide();
                       temp = $("#"+user_id+"_number").text();
                       temp = parseInt(temp) + 1;
                       $("#"+user_id+"_number").text(temp);
-                      $("#task_title").val('');
+                      $("#the_task_title").val('');
                       ue.setContent('');
                     },1000);
-                           
-               
+
+
 
                     }
                     else{
-            setTimeout(function(){ 
+            setTimeout(function(){
             sweetAlert(response.msg,'','error');
               },1000);
-                    
+
                     }
-                
+
                 },
-        
+
             });
-   
+
 
          });
         })
@@ -353,8 +356,8 @@
     }
     function getDateymd(time) {
             var nt    = new Date(time*1000);
-         
-     
+
+
             var month = nt.getMonth()+1;
             var day   = nt.getDate();
             var hour  = nt.getHours();
@@ -370,11 +373,11 @@
 //            url     : del_suffix($('#get_user_all_ask').val()),
 //            data    : {
 //            user_id : user_id,
-          
+
 //            },
 //            async   : false,
 //            error   : function (data) {
-   
+
 //                sweetAlert(response.msg,'','error');
 //            },
 //            success : function (response) {
@@ -399,7 +402,7 @@
 //             for(var p in response){
 //                 text += '<tr>\n';
 //                 text +='<td>'+p+'</td>\n';
-            
+
 //                 start_time_temp   = getDateymd(response[p].start_time);
 //                 end_time_temp     = getDateymd(response[p].end_time);
 //                 text +='<td>'+start_time_temp+'</td>\n';
@@ -417,7 +420,7 @@
 //             text +='</tbody>\n'+'</table>\n';
 
 //             $(".user_all_task_show").append(text);
-            
+
 //            $('#user_task_table').DataTable({
 //       language: {
 //         "sProcessing": "处理中...",
@@ -451,23 +454,23 @@
 //               { sWidth: '50px' },
 //             { sWidth: '50px' },
 //             { sWidth: '50px' }
-//         ] , 
+//         ] ,
 
 // });
 
-   
+
 //       $(function(){
 //         $("#close_user_task").click(function () {
 //             $(".user_all_task").hide();
-//            $(".user_all_task_show").hide();  
-//         })        
-//       });          
-          
+//            $(".user_all_task_show").hide();
+//         })
+//       });
+
 //             $(".user_all_task").show();
-//            $(".user_all_task_show").show(); 
-           
+//            $(".user_all_task_show").show();
+
 //            },
-   
+
 //        });
 //   }
 
@@ -477,9 +480,9 @@
    *
    */
   // function view_task(task_id) {
-  //   var a_ue = UE.getEditor('another_editor'); 
+  //   var a_ue = UE.getEditor('another_editor');
   //   a_ue.setContent(111111111,false);
-          
+
          // $.ajax({
          //          cache   : false,
          //          type    : "POST",
@@ -489,50 +492,50 @@
          //          },
          //          async   : false,
          //          error   : function (data) {
-             
+
          //              sweetAlert(response.msg,'','error');
          //          },
          //          success : function (response) {
          //          response   = eval('(' +response+ ')');
-                
-                  
+
+
          //          a_ue.setContent(111111111,false);
          //      //     a_ue.addListener('ready', function (){
-                
+
          //      //     a_ue.setContent(111111111,false);
          //      // });
          //      // $("#m2").html('111');
-                                                         
+
          //          $(".ueditor_glo").show();
-         //          $(".ueditor_menu").show();    
-         //          $(".ueditor_show").show(); 
+         //          $(".ueditor_menu").show();
+         //          $(".ueditor_show").show();
          //          $("#close_ueditor_home").click(function(){
          //          $(".ueditor_glo").hide();
-         //          $(".ueditor_menu").hide();    
-         //          $(".ueditor_show").hide();  
-         //          })  
+         //          $(".ueditor_menu").hide();
+         //          $(".ueditor_show").hide();
+         //          })
          //          },
-          
+
          //      });
   // }
   function view_task_content(task_id) {
-   
+
      $.ajax({
             cache   : false,
             type    : "POST",
             url     : del_suffix($('#get_task_content').val()),
             data    : {
             task_id : task_id,
-          
+
             },
             async   : false,
             error   : function (data) {
-    
+
                 sweetAlert(response.msg,'','error');
             },
             success : function (response) {
 
-            $(".task_content_show_title").text(response.title);
+            $("#task_title").text('标题：'+response.title);
             $(".task_content_show_content").html(response.content);
             $("#close_task_content").click(function(){
             $(".task_content_glo").hide();
@@ -541,37 +544,83 @@
             $(".task_content_glo").show();
             $(".task_content_show").show();
             },
-    
+
         });
-   
+
   }
     function view_report_content(report_id) {
-   
+
      $.ajax({
             cache   : false,
             type    : "POST",
             url     : del_suffix($('#get_report_content').val()),
             data    : {
             report_id : report_id,
-          
+
             },
             async   : false,
             error   : function (data) {
-    
+
                 sweetAlert(response.msg,'','error');
             },
             success : function (response) {
-
-
-            $(".task_content_show_content").html(response);
+              title = $("#task_tile").val();
+            $("#report_title").text('标题:'+title+'   提交时间:'+response.time)
+            $(".task_content_show_content").html(response.content);
             $("#close_task_content").click(function(){
             $(".task_content_glo").hide();
             $(".task_content_show").hide();
             })
             $(".task_content_glo").show();
             $(".task_content_show").show();
+            $("#lable_report_"+report_id).text('已查看');
             },
-    
+
         });
-   
+
+  }
+  function check_over(task_id){
+
+    $('#check_'+task_id).text('点击审核');
+    // $('#check_'+task_id).addClass("check_button_hover");
+     $('#check_'+task_id).css("background-color",'#D28C96');
+  }
+  function check_out(task_id){
+    $('#check_'+task_id).text('待审核');
+    $('#check_'+task_id).removeClass('check_button_hover');
+    $('#check_'+task_id).css("background-color",'#e6e6e6');
+  }
+  function check_click(task_id){
+    var url = del_suffix($('#check_task').val());
+
+      swal({
+         title: "审核完成？",
+         type: "info",   showCancelButton: true,
+         closeOnConfirm: false,
+         showLoaderOnConfirm: true,
+        confirmButtonText:'确认',
+         cancelButtonText:'取消'
+        },
+        function(){
+            $.post(url,{task_id:task_id},function(res){
+
+              if (res.flag == 1) {
+                setTimeout(function(){
+                     swal(res.msg,'','success');
+                     $("#task_tr_"+task_id).remove();
+                },1000);
+
+              }
+              else{
+                setTimeout(function(){
+                     sweetAlert(res.msg,'','error');
+                },1000);
+
+              }
+            })
+         });
+  }
+
+  function back_index(){
+    window.location.href=del_suffix($('#index_path').val());
   }

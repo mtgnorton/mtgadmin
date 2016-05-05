@@ -1,11 +1,11 @@
-  
+
  /*
      *此函数的作用是：
      *获得html页面中隐藏的跳转页面url
      *
      */
     function del_suffix (pre) {
-  
+
     var temp = pre.indexOf('shtml');
         pre = pre.substr(0, temp - 1);
         return pre;
@@ -17,30 +17,55 @@
  //     marginRight : $(window).width()*0.01,
  //  })
  // })
+    function getNowFormatDate(flag) {
+    var date = flag;
 
+
+
+    var seperator1 = "/";
+    var seperator2 = ":";
+    var month = date.getMonth()+1;
+    var strDate =date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var hour    =  date.getHours()< 10 ? ('0' + date.getHours()):date.getHours() ;
+    var min     =  date.getMinutes()< 10 ? ('0' + date.getMinutes()):date.getMinutes();
+    var currentdate =  month + seperator1 + strDate
+            + " " + hour + seperator2 + min;
+
+    return currentdate;
+  }
   $(document).ready(function() {
 
- // $(window).resize();  
+ // $(window).resize();
 
-  
+
     var url =$("#json_task_data").val();
         url = del_suffix(url);
     var myDate = new Date();
-    var year   = myDate.getFullYear(); 
+    var year   = myDate.getFullYear();
     var month  = myDate.getMonth()+1;
     var day    = myDate.getDate();
     var now_time = year+'-'+month+'-'+day;
-    
+
     $('#calendar').fullCalendar({
       theme: true,
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month'
+        right: 'month',
+
       },
+      eventLimit: true,
+       height:'500px',
       timeFormat:"",
       editable: false,
       lang:'zh-cn',
+      // aspectRatio:2,
       defaultDate: now_time,
       disableDragging:true,
         // eventLimit: true, // allow "more" link when too many events
@@ -53,129 +78,32 @@
       loading: function(bool) {
         $('#loading').toggle(bool);
       },
-    
+
         eventClick: function(calEvent, jsEvent, view) {
-        var url = del_suffix($('#task_url').val()),
+        var url = del_suffix($('#task_url').val());
         url     = url+'/task_id/'+calEvent.id;
         location.href =url
+        },
+        eventMouseover:function(calEvent, jsEvent, view) {//screenX calEvent.end._d
+            var time_x = jsEvent.pageX;
+            var time_y = jsEvent.pageY;
+            var start_time = getNowFormatDate(calEvent.start._d);
+            var end_time  = getNowFormatDate(calEvent.end._d);
 
-    //        $.ajax({
-    //               cache   : false,
-    //               type    : "POST",
-    //               url     : del_suffix($('#get_task_content').val()),
-    //               data    : {
-    //               task_id : calEvent.id,
-    //               },
-    //               async   : false,
-    //               error   : function (data) {
-                  
-    //                   sweetAlert(response.msg,'','error');
-    //               },
-    //               success : function (response) {
-                     
-                 
-               
-    //               response   = eval('(' +response+ ')');
-                  
-    //                $("#task_title").text(response.title);    
-    //                $("#task_content").html(response.content);                               
-    //                $("#time_s_e").html(response.start_time+'<font color="red">至</font>'+response.end_time);
+            $("#time_prompt").css({
+            "top"   : time_y,
+            "left"  : time_x,
+            }).text(start_time+'--'+end_time);
 
-                 
-    //                 setTimeout(function(){
-    //                     $(window).resize();
-    //                 },50)
-    //                 $(".ueditor_glo").show();
-    //                 $(".ueditor_show").show();
-    //                 $(".ueditor_menu").show();
+           $("#time_prompt").show();
 
-                     
-         
-    //                 $(this).css('border-color', 'red');
-    //               },
-
-          
-    //           });
-    //        $("#show_ueditor").click(function(){
-    //              setTimeout(function(){
-    //                     $(window).resize();
-    //                 },50)
-               
-    //            $(".ueditor_show").show();
-    //            $(".another_ueditor_show").hide();
-          
-    //         })
-
-    //        $("#write_report").unbind('click').bind('click',function(){
-             
-    //               setTimeout(function(){
-    //                     $(window).resize();   
-    //                 },20)
-             
-             
-             
-    //             $(function(){
-
-    //             var width  =$(".ueditor_show").width();
-    //             a_ue = UE.getEditor('another_editor',{
-    //             initialFrameWidth : width,
-    //             initialFrameHeight: 800
-    //              })
-    //              $(".ueditor_show").hide();
-    //              $(".another_ueditor_show").show();                         
-    //           });
-     
-               
-        
-    //        })
-    //        $("#close_ueditor").click(function(){
-
-    //           $(".ueditor_glo").hide();
-    //           $(".ueditor_show").hide();
-    //           $(".ueditor_menu").hide();
-    //           $(".another_ueditor_glo").hide();
-    //           $(".another_ueditor_show").hide();
-    //          setTimeout(function(){
-    //            location.reload() 
-    //          },50)
-    //        })
-    //        $("#pub_report").click(function(){
-    //         var content = a_ue.getContent();
-    //         if (content == '') {
-    //           sweetAlert('请输入内容','','error');
-    //           return;
-    //         }
-
-    //          $.ajax({
-    //                 cache   : false,
-    //                 type    : "POST",
-    //                 url     : del_suffix($('#pub_report_path').val()),
-    //                 data    : {
-    //                 task_id : calEvent.id,
-    //                 content : content,   
-    //                 },
-    //                 async   : false,
-    //                 error   : function (data) {
-            
-    //                     sweetAlert(data.msg,'','error');
-    //                 },
-    //                 success : function (res) {
-                 
-                  
-    //                 if (res.flag == 1) {
-    //                     swal(res.msg,'','success');
-    //                     }
-    //                     else{
-    //                     sweetAlert(res.msg,'','error');
-
-    //                     }
-                    
-    //                 },
-            
-    //             });
-    //        })
-
-
+        },
+    eventMouseout:function(calEvent, jsEvent, view) {
+         $("#time_prompt").hide();
     }
+
+
     });
-  }); 
+    $(".fc-center").before('<div class="mytitle" style=" position:absolute;margin-top:20px; margin-left:200px;"><h3 style="font-size:30px;">任务系统</h3></div>');
+    $(".fc-center").css({"margin-top":"40px","margin-right":"-400px"});
+  });

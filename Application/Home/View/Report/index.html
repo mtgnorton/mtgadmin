@@ -8,50 +8,59 @@
  	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
  	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
  	<script src="__BOOT__/js/bootstrap.min.js"></script>
- 	<link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">   
-    <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
+ 	<link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+    <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
     <script src="__PUB__/mtgadmin/mtg.js"></script>
+         <style type="text/css">
+  .label-warning{
+ background-color: #ff5722;
+}
+  </style>
 </head>
    <include  file="Public/sbider"  />
 <body style="background:url('__PUB__/photo/b7.jpg')">
 	<div class="table_div" >
-	   <button type="button" class="btn btn-default btn-lg" style="padding:4px 8px;font-size:14px;float: right;">
-      <a href="javascript:history.go(-1);location.reload()" style="text-decoration:none; color: black;">返回</a> 
+	   <button type="button" class="btn btn-danger" style="padding:4px 8px;font-size:14px;float: right;">
+      <a href="javascript:" onclick="self.location=document.referrer;" style="text-decoration:none; color: white;">返回</a>
 
    </button>
    <input type="hidden" id="get_task_content" value="{:U('Home/Membertask/get_task_content')}">
 
    <div class="task_content_glo">
    <div style="width: 10%;height: 70px;float: right;margin-top: 5%"></div>
-     <button type="button" class="btn btn-danger" id="close_task_content" style="float: right;margin-top: 1%">关闭</button>
+
 
    <h2 class="task_content_show_title"></h2>
-     
+
    </div>
 
    <div class="task_content_show" style=" outline:red dotted thick;">
 
-   
+
    <div class="panel panel-success">
    <div class="panel-heading">
-      <h3 class="panel-title "></h3>
+     <button type="button" class="btn btn-danger" id="close_task_content" style="float: right;margin-top:-10px">关闭</button>
+      <h3 class="panel-title " align="center" id="report_title"></h3>
+
    </div>
    <div class="panel-body task_content_show_content">
-      
+
    </div>
 </div>
 
    </div>
    <input type="hidden" id="get_report_content" value="{:U('Home/Report/get_report_content')}">
- <h2 align="center">报告列表--姓名:{$realname}任务标题:{$title}</h2>
+   <h2 align="center" style="color: orange">报告列表</h2>
+ <h3 align="center" style="color: #5cb85c">姓名:{$realname} &nbsp;&nbsp;&nbsp;任务标题:{$title}</h3>
+ <input type="hidden" id="task_tile" value="{$title}">
    <table id="table_id" class=" stripe">
     <thead>
         <tr>
             <th ><span class="label label-warning">序号</span></th>
             <th><span class="label label-warning">提交时间</span></th>
             <th><span class="label label-warning">内容</span></th>
- 	
+
 
         </tr>
     </thead>
@@ -60,14 +69,21 @@
    <volist name="report_data" id="value" key="key" >
         <tr >
             <td>{$key}</td>
-         
-         
+
+
         	 <td>{$value.push_time}</td>
- 
-            <td>  <button type="button" id="pub_button" onclick="view_report_content({$value['id']})" class="btn btn-primary">
-      查看
-   </button></td>
-   
+
+            <td >
+            <if condition="($value.status neq  null) and ($value.status neq 1)">
+            <label class="new_report" for="" id="lable_report_{$value.id}">新</label>
+            <else />
+            <label class="new_report" for="">已查看</label>
+            </if>
+           <button type="button" id="pub_button" onclick="view_report_content({$value['id']})" class="btn btn-primary">
+           查看
+           </button>
+           </td>
+
         </tr>
     </volist>
     </tbody>
@@ -101,20 +117,20 @@
             "sSortDescending": ": 以降序排列此列"
         }
     },
-    
+
 });
 });
 
-  $(window).resize(function(){  
-  $('.task_content_show').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.task_content_show').outerWidth())/2,  
-    top:($(window).height()-$('.task_content_show').outerHeight())/2+$(document).scrollTop()  
-  }) 
-}) 
+  $(window).resize(function(){
+  $('.task_content_show').css({
+    position:'absolute',
+    left:($(window).width()-$('.task_content_show').outerWidth())/2,
+    top:($(window).height()-$('.task_content_show').outerHeight())/2+$(document).scrollTop()
+  })
+})
 
 $(function(){
-$(window).resize();  
+$(window).resize();
 });
 </script>
 </html>
