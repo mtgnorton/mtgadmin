@@ -31,9 +31,11 @@ class LoginController extends Controller
 		$password		= trim($data['1']['value']);
 		$userModel 		= M('member');
 		$user_data 		= $userModel->where("username='$username'")->find();
-		$judge_password = hash_equals(crypt($password,$user_data['password']),$user_data['password']);
+		$temp 						 = substr($password, 0,2);
+		$password_temp 		= crypt($password,$temp);
 
-		if ($judge_password) {
+
+		if ($password_temp == $user_data['password']) {
 		session('username',$username);
 		session('realname',$user_data['realname']);
 		session('group_id', $user_data['group_id']);
@@ -122,20 +124,24 @@ class LoginController extends Controller
 	'msg'   => '密码不一致',
 		));
 	}
-	$password 				 = crypt($password);
+	$temp 						 = substr($password, 0,2);
+	$password 				 = crypt($password,$temp);
 	$insert_data['username'] = $username;
 	$insert_data['password'] = $password;
 	$insert_data['realname'] = $realname;
 	$insert_data['group_id'] = 4;
 	$insert_data['create_time'] = time();
 	$insert_data['last_login_time'] =time();
+
+
 	$is_suc 	= $memberModel->add($insert_data);
 
 	if ($is_suc) {
 
+
 	$this->ajaxReturn(array(
 	'flag' 	=> 1,
-	'msg'   => '注册成功，将为您登陆到首页',
+	'msg'   => '注册成功，请登录',
 		));
 
 	}
