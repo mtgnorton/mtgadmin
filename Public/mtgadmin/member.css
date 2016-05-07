@@ -194,3 +194,7 @@
     padding: 12px;
 
   }
+  .ui-widget-header{
+    height: 30px;
+    padding: 10px;
+  }

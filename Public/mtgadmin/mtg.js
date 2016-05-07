@@ -199,56 +199,56 @@
          $(".task_b").show();
 
 
-         $('#ert').bind("myclick",function(){
-             $('#edui3_body').grumble(
-        {
-         text: '点击全屏!',
-        angle: 60,
-        distance: 1,
-        showAfter: 500,
-        hideAfter: 500,
-        onHide: function(grumble, button) {
-        grumble.bubble.remove();
-        grumble.text.remove();
-        button && button.remove();
-    }
-        }
-      );
+    //      $('#ert').bind("myclick",function(){
+    //          $('#edui3_body').grumble(
+    //     {
+    //      text: '点击全屏!',
+    //     angle: 60,
+    //     distance: 1,
+    //     showAfter: 500,
+    //     hideAfter: 500,
+    //     onHide: function(grumble, button) {
+    //     grumble.bubble.remove();
+    //     grumble.text.remove();
+    //     button && button.remove();
+    // }
+    //     }
+    //   );
 
-      $('#edui160_body').grumble(
-        {
-        text: '上传文件!',
-        angle: 60,
-        distance: 1,
-        showAfter: 1000,
-        hideAfter: 500,
-        onHide: function(grumble, button) {
-        grumble.bubble.remove();
-        grumble.text.remove();
-        button && button.remove();
-    }
-        }
-      );
-     $('#edui148_state').grumble(
-        {
-         text: '上传图片!',
-        angle: 60,
-        distance: 1,
-        showAfter: 1500,
-        hideAfter: 500,
-    onHide: function(grumble, button) {
+    //   $('#edui160_body').grumble(
+    //     {
+    //     text: '上传文件!',
+    //     angle: 60,
+    //     distance: 1,
+    //     showAfter: 1000,
+    //     hideAfter: 500,
+    //     onHide: function(grumble, button) {
+    //     grumble.bubble.remove();
+    //     grumble.text.remove();
+    //     button && button.remove();
+    // }
+    //     }
+    //   );
+    //  $('#edui148_state').grumble(
+    //     {
+    //      text: '上传图片!',
+    //     angle: 60,
+    //     distance: 1,
+    //     showAfter: 1500,
+    //     hideAfter: 500,
+    // onHide: function(grumble, button) {
 
-        grumble.bubble.remove();
-        grumble.text.remove();
-        button && button.remove();
-    }
-        }
-      );
-         });
+    //     grumble.bubble.remove();
+    //     grumble.text.remove();
+    //     button && button.remove();
+    // }
+    //     }
+    //   );
+    //      });
 
-    $('#ert').trigger("myclick");
+    // $('#ert').trigger("myclick");
 
-    $('#ert').unbind("myclick");
+    // $('#ert').unbind("myclick");
 
          $("#long_time").unbind('click').bind('click',function(){
          nextDate = new Date(curDate.getTime() + 7*24*60*60*1000);

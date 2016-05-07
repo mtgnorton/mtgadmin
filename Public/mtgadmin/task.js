@@ -41,10 +41,7 @@
       $(".another_ueditor_glo").hide();
       $(".another_ueditor_menu").hide();
       $(".another_ueditor_show").hide();
-      $(".task_content").animate({
-      width: task_width+'px',
-      height:task_height+'px',
-    },1000);
+      $(".task_content").slideDown(1000)
   })
 
   $("#write_report").click(function(){
@@ -52,68 +49,17 @@
     task_width  = $(".task_content").width();
     task_height = $(".task_content").height();
 
-    $(".task_content").animate({
-      width:'0px',
-      height:'0px'
-    },1000,function(){
+    $(".task_content").slideUp(1000,function(){
+
       $(".another_ueditor_glo").show();
        $(".another_ueditor_menu").show();
-      $(".another_ueditor_show").show();
+      $(".another_ueditor_show").slideDown();
 
       });
 
 
     });
- // $('#ert').bind("myclick",function(){
- //        $('#edui425_body').grumble(
- //        {
- //        text: '点击全屏!',
- //        angle: 60,
- //        distance: 1,
- //        showAfter: 500,
- //        hideAfter: 500,
- //        onHide: function(grumble, button) {
- //        grumble.bubble.remove();
- //        grumble.text.remove();
- //        button && button.remove();
- //    }
- //        }
- //      );
 
- //      $('#edui580_body').grumble(
- //        {
- //        text: '上传文件!',
- //        angle: 60,
- //        distance: 1,
- //        showAfter: 1000,
- //        hideAfter: 500,
- //        onHide: function(grumble, button) {
- //        grumble.bubble.remove();
- //        grumble.text.remove();
- //        button && button.remove();
- //    }
- //        }
- //      );
-
- //     $('#edui568_state').grumble(
- //        {
- //        text: '上传图片!',
- //        angle: 60,
- //        distance: 1,
- //        showAfter: 1500,
- //        hideAfter: 500,
- //    onHide: function(grumble, button) {
-
- //        grumble.bubble.remove();
- //        grumble.text.remove();
- //        button && button.remove();
- //    }
- //        }
- //      );
- //         });
-
- //  $('#ert').trigger("myclick");
- //  $('#ert').unbind("myclick");
 
  $("#apply_finish").click(function(){
  var url      = del_suffix($('#apply_finish_path').val());

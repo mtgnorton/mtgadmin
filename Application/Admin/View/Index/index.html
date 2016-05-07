@@ -7,7 +7,7 @@
     <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery -->
  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
- 
+
  <!-- DataTables -->
  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
  <!-- <script src="__JQUERY__/jquery-2.1.1.min.js"></script> -->
@@ -16,10 +16,15 @@
 <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
      <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
         <!-- <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet"> -->
-        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script> 
+        <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
 
+<style>
+   .label-warning{
+ background-color: #ff5722;
+}
+</style>
 </head>
-<body style="background:url('__PUB__/photo/b8.jpg')">
+<body style="background:url('__PUB__/photo/b10.jpg');background-repeat: repeat-x;">
    <include  file="Public/sbider"  />
    <div class="table_div" >
 <input type="hidden" id="modify_group" value="{:U('Admin/Index/modify_group')}">
@@ -33,8 +38,8 @@
 
 <div class="theclass " id="theselect">
 <label for="" class="therank">等级:</label>
- <select name="group" id='group' class="" style="margin-left: 60px;">    
-   <volist name="group_data" id="value" key="key" >                       
+ <select name="group" id='group' class="" style="margin-left: 60px;">
+   <volist name="group_data" id="value" key="key" >
    <option value="{$value.id}" >{$value.group_name}</option>
    </volist>
 </select>
@@ -48,7 +53,7 @@
 </button>
 </div>
 </div>
-
+  <h2 style="color: orange" align="center">管理员</h2>
    <table id="table_id" class="stripe">
     <thead>
         <tr>
@@ -56,8 +61,9 @@
             <th ><span class="label label-warning">姓名</span></th>
             <th ><span class="label label-warning">用户等级</span></th>
             <th ><span class="label label-warning">最后一次登陆时间</span></th>
-            <th ><span class="label label-warning">邮箱</span></th>
+                  <th ><span class="label label-warning">任务列表</span></th>
  		 <th ><span class="label label-warning">修改用户等级</span></th>
+
         </tr>
     </thead>
     <tbody>
@@ -68,10 +74,16 @@
             <td >{$value.realname}</td>
             <td id="{$value.id}_group">{$value.group_name}</td>
             <td>{$value.last_login_time}</td>
-            <td>1</td>
-            <td>  <button type="button" onclick="modify_group({$value['id']},'{$value['realname']}')" class="btn btn-info">
-      修改
-   </button></td>
+            <td>
+            <button type="button" onclick="location.href='{:U('Admin/Task/index',array('member_id'=>$value['id'],'realname'=>$value['realname']))}'" class="btn btn-success ">
+             查看
+            </button>
+            </td>
+            <td>
+            <button type="button" onclick="modify_group({$value['id']},'{$value['realname']}')" class="btn btn-info">
+             修改
+            </button>
+            </td>
         </tr>
     </volist>
     </tbody>
@@ -106,20 +118,20 @@
             "sSortDescending": ": 以降序排列此列"
         }
     },
-    
+
 });
 });
 
-  $(window).resize(function(){  
-  $('.bomb_box').css({  
-    position:'absolute',  
-    left:($(window).width()-$('.bomb_box').outerWidth())/2,  
-    top:($(window).height()-$('.bomb_box').outerHeight())/3+$(document).scrollTop()  
-  }) 
-}) 
+  $(window).resize(function(){
+  $('.bomb_box').css({
+    position:'absolute',
+    left:($(window).width()-$('.bomb_box').outerWidth())/2,
+    top:($(window).height()-$('.bomb_box').outerHeight())/3+$(document).scrollTop()
+  })
+})
 
 $(function(){
-$(window).resize();  
+$(window).resize();
 });
 </script>
 

@@ -27,6 +27,12 @@ class ReportController extends Controller
 		if (empty($username)) {
 		$this->error('请登录',U('Admin/Login/index'), 3 );
 		}
+		if (session('expiretime')<time()) {
+		session(null);
+		$this->error('登陆超时',U('Admin/Login/index'), 3 );
+		}else{
+		session('expiretime',time() + 3600); // 刷新时间戳
+		}
 		if (!competence(session('group_id'),2)) {
 		$this->error('权限不符合',U('Admin/Login/index'), 3 );
 		}

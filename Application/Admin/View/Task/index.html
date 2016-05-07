@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" type="text/css" href="__PUB__/DataTables/css/jquery.dataTables.css">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="__PUB__/DataTables/css/jquery.dataTables.css">
     <link href="__BOOT__/css/bootstrap.min.css" rel="stylesheet">
- 	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
- 	<script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
- 	<script src="__BOOT__/js/bootstrap.min.js"></script>
- 	<link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
+  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.js"></script>
+  <script type="text/javascript" charset="utf8" src="__PUB__/DataTables/js/jquery.dataTables.js"></script>
+  <script src="__BOOT__/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="__PUB__/sweetalert-master/dist/sweetalert.css">
     <script src="__PUB__/sweetalert-master/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css">
-    <script src="__PUB__/mtgadmin/mtg.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/admin.css">
+        <!-- <link rel="stylesheet" type="text/css" href="__PUB__/mtgadmin/mtg.css"> -->
+
+    <script src="__PUB__/mtgadmin/admin.js"></script>
+
+       <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUB__/ueditor/lang/zh-cn/zh-cn.js"></script>
+  <script>
+     var ue = UE.getEditor('another_editor',{
+            initialFrameHeight:  $(window).height()*0.8,
+            });
+
+  </script>
      <style type="text/css">
 
   .label-warning{
@@ -20,11 +33,18 @@
   </style>
 </head>
    <include  file="Public/sbider"  />
-<body style="background:url('__PUB__/photo/b7.jpg')">
-	<div class="table_div" >
-    <input type="hidden" id="index_path" value="{:U('Home/Index/index')}">
-   <input type="hidden" id="get_task_content" value="{:U('Home/Membertask/get_task_content')}">
-  <input type="hidden" id="check_task" value="{:U('Home/Membertask/check_task')}">
+<body style="background:url('__PUB__/photo/b10.jpg')">
+
+  <div class="table_div" >
+    <input type="hidden" id="index_path" value="{:U('Admin/Index/index')}">
+   <input type="hidden" id="get_task_content" value="{:U('Admin/Task/get_task_content')}">
+    <input type="hidden" id="push_content_path" value="{:U('Admin/Task/push_content')}">
+
+
+
+
+
+
 
    <div class="task_content_glo">
    <div style="width: 10%;height: 70px;float: right;margin-top: 5%"></div>
@@ -40,17 +60,30 @@
    <div class="panel panel-success">
    <div class="panel-heading">
     <button type="button" class="btn btn-danger" id="close_task_content" style="float: right;margin-top:-10px">关闭</button>
+     <button type="button" class="btn btn-success" id="modify_content" style="float: right;margin-top:-10px;margin-right: 10px">
+    修改
+    </button>
+      <button type="button" class="btn btn-info" id="push_content" style="float: right;margin-top:-10px;margin-right: 10px">
+    提交修改
+    </button>
       <h3 class="panel-title" align="center" id="task_title"></h3>
    </div>
+
    <div class="panel-body task_content_show_content">
 
    </div>
+
+     <div class="another_ueditor_show">
+      <script id="another_editor" type="text/plain" style="">
+        </script>
+    </div>
 </div>
 
    </div>
-     </style>
+
+
      <button type="button" class="btn btn-danger " style="padding:4px 8px;font-size:14px;float: right;margin-top: 8px">
-      <a href="javascript:" onclick="back_index()" style="text-decoration:none; color: white;">返回</a>
+      <a href="javascript:" onclick="back_admin_index()" style="text-decoration:none; color: white;">返回</a>
 
    </button>
  <h2 align="center" style="color: orange">任务列表</h2>
@@ -64,7 +97,7 @@
             <th><span class="label label-warning">状态</span></th>
               <th><span class="label label-warning">标题</span></th>
             <th><span class="label label-warning">内容</span></th>
- 			<th><span class="label label-warning">报告</span></th>
+      <th><span class="label label-warning">报告</span></th>
 
         </tr>
     </thead>
@@ -73,25 +106,29 @@
    <volist name="task_data" id="value" key="key" >
         <tr id="task_tr_{$value.id}">
             <td>{$key}</td>
-         	<td>{$value.start_time}</td>
-         	<td>{$value.end_time}</td>
-         	<if condition="$value['apply'] eq 0">
+          <td>{$value.start_time}</td>
+          <td>{$value.end_time}</td>
+          <if condition="$value['apply'] eq 0">
 
-         	<td>未完成</td>
-         	<else />
-         	<td><button type="button" style="margin-left: -12px" class="btn btn-default "  id="check_{$value.id}" onmouseover="check_over({$value['id']}) " onmouseout="check_out({$value['id']})" onclick="check_click({$value['id']})" >待审核</button></td>
-        	 </if>
-        	 <td>{$value.title}</td>
-               <td>  <button type="button"  onclick="view_task_content({$value['id']})"  class="btn btn-success">
-      查看
-         </button></td>
+          <td>未完成</td>
+          <else />
+          <td><button type="button" style="margin-left: -12px" class="btn btn-default "  id="check_{$value.id}" onmouseover="check_over({$value['id']}) " onmouseout="check_out({$value['id']})" onclick="check_click({$value['id']})" >待审核</button></td>
+           </if>
+           <td>
+           {$value.title}
+           </td>
+               <td>
+               <button type="button"  onclick="view_task_content({$value['id']})"  class="btn btn-success">
+                查看
+               </button>
+               </td>
                   <td>
-                    <a href="{:U('Home/Report/index',array('task_id'=>$value['id'],'realname'=>$member_realname))}">
+                    <a href="{:U('Admin/Report/index',array('task_id'=>$value['id'],'realname'=>$member_realname))}">
                     <if condition="($value.status neq  null) and ($value.status neq 1)">
                       <label class="new_report" for="">新</label>
                       <else />
                     </if>
-                    <button type="button" id="pub_button"  class="btn btn-primary">
+                    <button type="button" onclick=""  class="btn btn-primary">
                     查看
                     </button>
                    </a>
@@ -104,7 +141,7 @@
 </div>
 </body>
 <script>
-		$(document).ready( function () {
+    $(document).ready( function () {
    $('#table_id').DataTable({
     language: {
         "sProcessing": "处理中...",
@@ -135,15 +172,16 @@
 });
 
   $(window).resize(function(){
+
   $('.task_content_show').css({
     position:'absolute',
     left:($(window).width()-$('.task_content_show').outerWidth())/2,
     top:($(window).height()-$('.task_content_show').outerHeight())/2+$(document).scrollTop()
   })
+
 })
 
 $(function(){
-
 
 $(window).resize();
 });

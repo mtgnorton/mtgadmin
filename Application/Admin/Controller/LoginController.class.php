@@ -13,31 +13,32 @@ use Think\Controller;
 	 *此处的作用是：
 	 *该页面属于老师
 	 *
-	 */ 
+	 */
 
 class LoginController extends Controller
-{	
+{
 
-	
+
 	public function index($course='',$tran_class='')
 	{
 
 	$this->display();
 	}
 	public function login_judge($value='')
-	{	
+	{
 		$data 			= I('post.data');
 		$username 		= trim($data['0']['value']);
 		$password		= trim($data['1']['value']);
 		$userModel 		= M('member');
 		$user_data 		= $userModel->where("username='$username'")->find();
 		$judge_password = hash_equals(crypt($password,$user_data['password']),$user_data['password']);
-		
+
 		if ($judge_password) {
 		session('username',$username);
 		session('realname',$user_data['realname']);
 		session('group_id', $user_data['group_id']);
 		session('user_id',$user_data['id']);
+		session('expiretime',time() + 3600);
 		if ($user_data['group_id'] == 1) {
 		$this->ajaxReturn(
 		array(
@@ -48,8 +49,8 @@ class LoginController extends Controller
 				)
 
 			);
-		}else if($user_data['group_id'] == 2 or $user_data['group_id'] == 3){ 
-		
+		}else if($user_data['group_id'] == 2 or $user_data['group_id'] == 3){
+
 		$this->ajaxReturn(
 		array(
 				'flag'=>1,
@@ -62,7 +63,7 @@ class LoginController extends Controller
 		$this->ajaxReturn(
 		array(
 				'flag'=>1,
-			
+
 				'url' =>U('Member/Index/index'),
 				'msg'=>'登录成功',
 				)
@@ -131,7 +132,7 @@ class LoginController extends Controller
 	$is_suc 	= $memberModel->add($insert_data);
 
 	if ($is_suc) {
-	
+
 	$this->ajaxReturn(array(
 	'flag' 	=> 1,
 	'msg'   => '注册成功，将为您登陆到首页',
@@ -142,7 +143,7 @@ class LoginController extends Controller
 	$this->ajaxReturn(array(
 	'flag' 	=> 0,
 	'msg'   => '注册失败',
-		));	
+		));
 	}
 	}
 	public function logout($value='')
@@ -154,5 +155,5 @@ class LoginController extends Controller
 		'url'  =>U('Admin/Login/index'),
 			));
 	}
-	
+
 }

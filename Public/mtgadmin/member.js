@@ -22,6 +22,7 @@
 
 
 
+
     var seperator1 = "/";
     var seperator2 = ":";
     var month = date.getMonth()+1;
@@ -54,11 +55,12 @@
 
     $('#calendar').fullCalendar({
       theme: true,
+
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'month',
-
+      height: 200,
       },
       eventLimit: true,
        height:'500px',

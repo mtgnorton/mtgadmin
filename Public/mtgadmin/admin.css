@@ -1,0 +1,111 @@
+        .task_content_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+        background-color: #f2dede;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:1;
+
+        }
+        .task_content_show{
+        display:none;
+        overflow: auto;
+        width:80%;
+        position:fixed;
+        background:#fff;
+        z-index:10;
+        background-color: #fff;
+        height:80%;
+        opacity:1;
+        padding: 30px auto;
+        outline:green dotted thick;
+        margin-top: 20px;
+        }
+        .task_content_show_title{
+        text-align: center;
+         text-shadow: 10px 10px 10px #ddd;
+        }
+           .another_ueditor_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        /*background:#fff;*/
+         background-color: #f2dede;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:1;
+        }
+        .another_ueditor_menu{
+
+        display:none;
+        background:#fff;
+        position:absolute;
+        width: auto;
+        height: 5%;
+        background-color:#3c763d;
+
+        z-index:20;
+        }
+        .another_ueditor_show{
+        display:none;
+        background:#fff;
+        position:relative;
+        width: auto;
+        height: auto;
+
+        z-index:20;
+        /*background:url( "../photo/b1.png");*/
+
+        }
+
+    .table_div{
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:100px
+    }
+      .new_report{
+        float: right;
+        margin-top: -10px;
+        color: red
+    }
+    .panel-body{
+     /*min-height: 700px;*/
+    }
+        .report_content_glo{
+        display:none;
+        width:100%;
+        position:fixed;
+        background:#fff;
+        background-color: #f2dede;
+        z-index:10;
+        top:0;
+        left:0;
+        height:100%;
+        opacity:1;
+
+        }
+        .report_content_show{
+        display:none;
+        overflow: auto;
+        width:80%;
+        position:fixed;
+        background:#fff;
+        z-index:10;
+        background-color: #fff;
+        height:80%;
+        opacity:1;
+        padding: 30px auto;
+        outline:green dotted thick;
+        margin-top: 20px;
+        }
+        .report_content_show_title{
+        text-align: center;
+         text-shadow: 10px 10px 10px #ddd;
+        }
